@@ -1,95 +1,130 @@
-/* Basic Reset */
-body, h1, ul, li, a, img {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  margin-right: 10px;
+/* ================================
+   1. BASE: VARIABLES & GLOBALS
+===================================*/
+
+:root {
+  --color-bg: #f3f4f6;            /* page background: light gray */
+  --color-surface: #ffffff;       /* cards / sections */
+  --color-primary: #0f172a;       /* deep navy: nav, headings */
+  --color-primary-soft: #1d4ed8;  /* professional blue: hero, badges */
+  --color-accent: #0ea5e9;        /* teal/sky accent for hovers */
+  --color-border: #e5e7eb;        /* subtle borders / lines */
+  --color-text: #020617;          /* almost-black text */
+  --color-text-muted: #4b5563;    /* secondary text */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  color: #030303;
-  background-color: #f9f9f9;
-  text-align: center;
+
+/* Global reset / base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  text-align: center;
+}
+
+/* Base headings */
+h3 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+  text-align: left;
+  margin-left: 10px;
+  padding: 5px;
+}
+
+h4 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+  text-align: center;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+/* Utility text colors */
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+
+/* ================================
+   2. LAYOUT: HERO, NAVBAR, SECTIONS
+===================================*/
+
 /* Hero Section */
 .hero-section {
-  /*background: linear-gradient(to bottom, #9a62a2, #1e1592);*/
-  /*background: linear-gradient(to bottom, #c5cbe3, #e2d8f7);*/
-  /*background: linear-gradient(to bottom, #a3aedb, #c9cbe6);*/
-  background: linear-gradient(to bottom, #6a5acd, #836fff);
-
-
-
-
-
-  color: white;
-  padding: 100px 20px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+  color: #ffffff;
+  padding: 120px 20px 80px;
 }
 
 .hero-title {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
+.hero-title span {
+  color: var(--color-accent);
+}
+
+.hero-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.hero-meta span {
+  display: inline-block;
+  margin: 4px 8px;
+  color: #e5e7eb; /* soft light text */
+}
+
+/* Hero image */
 .hero-image {
   max-width: 150px;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   margin: 20px 0;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .hero-image:hover {
   transform: scale(1.1);
 }
 
+/* Generic CTA button (if used) */
 .cta-button {
   text-decoration: none;
-  color: white;
-  /*background-color: #a87631;*/
+  color: #ffffff;
   background-color: #0693e3;
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
   margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
   background-color: #7d3d0f;
 }
-/* Social Links Styling */
-.social-links {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
 
-.social-link {
-  text-decoration: none;
-  color: white;
-  font-size: 1.5em;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.social-link:hover {
-  /*color: #4a90e2; /* Slight color shift on hover */
-  color:linear-gradient(to bottom, #c5cbe3, #eed8f7);
-  transform: scale(1.2); /* Slight zoom effect */
-}
-
-/* Navbar Styling */
-
+/* Navbar */
 .navbar {
-  background-color: #16325c; /* Dark blue background */
+  background-color: var(--color-primary);
   padding: 10px 0;
-  position: fixed; /* Keep navbar at the top */
-  width: 100%; /* Full width */
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 1000;
 }
@@ -108,119 +143,103 @@ html {
 
 .navbar .nav-links a {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   font-weight: bold;
-  transition: color 0.3s, background-color 0.3s;
   padding: 5px 10px;
   border-radius: 5px;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .navbar .nav-links a:hover {
-  background-color: white;
-  color: #16325c;
-} 
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
 
 /* Hamburger Menu */
 .hamburger-menu {
   display: none;
   font-size: 1.5em;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
 }
 
 /* Responsive Navbar */
 @media (max-width: 768px) {
   .navbar .nav-links {
-      flex-direction: column;
-      position: fixed;
-      top: 60px;
-      right: -100%;
-      background-color: #16325c;
-      width: 100%;
-      transition: right 0.3s ease-in-out;
+    flex-direction: column;
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    background-color: var(--color-primary);
+    width: 100%;
+    transition: right 0.3s ease-in-out;
   }
 
   .navbar .nav-links.show {
-      right: 0;
-  }
-
-  .hamburger-menu {
-      display: block;
+    right: 0;
   }
 
   .navbar .nav-links li {
-      margin: 15px 0;
+    margin: 15px 0;
+  }
+
+  .hamburger-menu {
+    display: block;
+    margin-right: 20px;
   }
 }
 
 
-/* Summary Component */
-h3{
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #16325c;
-  animation-delay: 0.2s;
-  text-align: left;
-  margin-left: 10px;
-  padding: 5px;
-}
-h4{
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #16325c;
-  animation-delay: 0.2s;
-  text-align: center;
-  margin-left: 5px;
-  padding: 5px;
-}
-/* Initial State */
-.timeline-item {
-  opacity: 0;
-  transform: translateY(50px); /* Start slightly off-screen */
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* ================================
+   3. COMPONENTS
+===================================*/
+
+/* 3.1 Social Links */
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
-/* Visible State */
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0); /* Move into position */
+.social-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5em;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
+
+.social-link:hover {
+  color: var(--color-accent);
+  transform: scale(1.15);
+}
+
+
+/* 3.2 Summary / About Me */
 .summary-component {
   padding: 40px 20px;
-  background: #f9f9f9;
-  color: white;
+  background: var(--color-bg);
   text-align: center;
-  overflow: hidden;
 }
 
 .record-view-form {
   max-width: 1800px;
   margin: 0 auto;
-  background-color: white;
-  color: #333;
+  background-color: var(--color-surface);
+  color: var(--color-text);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
-  opacity: 0; /* Initially hidden */
-  transform: translateY(30px); /* Start with a slight downward slide */
-  transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth animation */
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
 .record-view-form.visible {
-  opacity: 1; /* Fully visible */
-  transform: translateY(0); /* Slide into the original position */
+  opacity: 1;
+  transform: translateY(0);
 }
-/* new code*/
-.summary-title,
-.summary-subtitle,
-.summary-location,
-.summary-description {
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: fadeInLeft 0.6s ease forwards;
-}
+
 .output-field {
   text-align: left;
 }
@@ -228,78 +247,51 @@ h4{
 .summary-title {
   font-size: 2em;
   margin-bottom: 10px;
-  color: #16325c;
-  animation-delay: 0.2s;
 }
 
 .summary-subtitle {
   font-size: 1.2em;
   margin-bottom: 10px;
   font-weight: bold;
-  animation-delay: 0.4s;
 }
 
 .summary-location {
   font-size: 1em;
   margin-bottom: 20px;
   font-style: italic;
-  animation-delay: 0.6s;
 }
 
 .summary-description {
   font-size: 1.1em;
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #555;
-  animation-delay: 0.8s;
+  color: #555555;
 }
 
 .download-resume {
   margin-top: 20px;
 }
-/* Button Hover Animation */
-.download-button {
+
+/* Buttons (download + project links) */
+.download-button,
+.project-link {
   text-decoration: none;
-  color: white;
-  background-color: #16325c;
-  padding: 10px 20px;
+  color: #ffffff;
+  background-color: var(--color-primary);
+  padding: 8px 16px;
   border-radius: 5px;
-  font-size: 1em;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 0.95em;
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
-.download-button:hover {
-  background-color: #836fff;
-  transform: scale(1.05);
-}
-
-/* Animation */
-/* Fade In Left Animation */
-@keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
+.download-button:hover,
+.project-link:hover {
+  background-color: var(--color-primary-soft);
+  transform: scale(1.03);
 }
 
 
-
-/* Timeline Styling */
+/* 3.3 Experience Timeline */
 .timeline {
   list-style: none;
   padding: 0;
@@ -315,10 +307,22 @@ h4{
   left: 20px;
   width: 4px;
   height: 100%;
-  background: #16325c; /* Vertical line color */
+  background: var(--color-border);
 }
 
-/* Timeline Item */
+/* Base animation state */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Timeline list item */
 .timeline__item {
   display: flex;
   align-items: flex-start;
@@ -338,31 +342,34 @@ h4{
   animation-delay: 0.4s;
 }
 
-/* Timeline Icon */
+/* Timeline icons (experience) */
 .timeline__icon {
   position: absolute;
   left: 10px;
   top: 5px;
-  background: #fff;
-  border: 2px solid #16325c;
-  color: #16325c;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: #ffffff;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
-  align-items: left;
-  justify-content: left;
-  font-size: 1.5em;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Timeline Details */
+/* Timeline details (experience card) */
 .timeline__details {
   flex: 1;
-  background: #f9f9f9;
-  padding: 15px;
+  background: var(--color-surface);
+  padding: 15px 20px;
+  margin-right: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .timeline__header {
@@ -379,13 +386,13 @@ h4{
 
 .timeline__date {
   font-style: italic;
-  color: #555;
+  color: #555555;
   font-size: 0.9em;
 }
 
 .timeline__company {
   font-weight: bold;
-  color: #16325c;
+  color: var(--color-primary);
   margin-bottom: 10px;
   text-align: left;
 }
@@ -393,7 +400,7 @@ h4{
 .timeline__description ul {
   padding-left: 20px;
   margin: 0;
-  color: #333;
+  color: #333333;
 }
 
 .timeline__description ul li {
@@ -401,106 +408,42 @@ h4{
   text-align: justify;
 }
 
-/* Animation Keyframes */
-@keyframes fadeInUp {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
+/* Hover & expanded states */
+.timeline__item:hover .timeline__details {
+  background-color: #edf2ff; /* light indigo */
 }
 
-
-/* CSS FOR JS*/
-.timeline__item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.timeline__item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/*EXTRA PART*/
-/* Hover Effect for Timeline Items */
-.timeline__item:hover {
-  background: #f9f9f9/* #e6e6ff;Light purple highlight on hover */
-  transition:color 0.3s ease;
- 
-}
-
-/* Expanded Timeline Item for Mobile */
-.timeline__item.expanded .timeline__details {
-  background: #f9f9f9; /* Slightly darker purple for focus */
-  transition: backgroundcolor 0.3s ease;
-  max-height: 100%; /* Ensure expanded details are fully visible */
-  overflow: visible;
-}
-
-.timeline__item.expanded .timeline__description ul {
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .timeline__details {
-      max-height: 100px; /* Initial collapsed height for mobile */
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-  }
-
-  .timeline__item.expanded .timeline__details {
-      max-height: 1000px; /* Expand fully on click */
-  }
-}
-
-/* Interactive Box Styling */
-.timeline__details {
-  flex: 1;
-  background: #f9f9f9;
-  padding: 0px;
-  margin-right: 20px;
-  padding-right: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  cursor: pointer; /* Make it feel interactive */
-}
-
-/* Hover Effect */
-.timeline__details:hover {
-  transform: scale(1.03); /* Slightly grow the box */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Add more depth */
-  background-color: #e6e6ff; /* Light purple shade */
-}
-
-/* Expanded State for Click */
 .timeline__details.expanded {
-  background:f9f9f9; /* Slightly darker shade */
-  transform: scale(1.05); /* Slightly larger on expand */
+  transform: scale(1.05);
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.25);
 }
 
-/* Smooth Content Expand/Collapse */
+/* Smooth expand/collapse for description */
 .timeline__description ul {
-  max-height: 0; /* Initially collapsed */
+  max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out;
 }
 
 .timeline__details.expanded .timeline__description ul {
-  max-height: 1000px; /* Fully expanded */
+  max-height: 1000px;
+}
+
+/* Mobile behavior */
+@media (max-width: 768px) {
+  .timeline__details {
+    max-height: 100px; /* collapsed */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .timeline__item.expanded .timeline__details {
+    max-height: 1000px; /* expanded */
+  }
 }
 
 
-/* CSS FOR EXPERIENCE END*/
-/*CSS FOR EDUCATION START HERE*/
-
-/* Timeline Container */
+/* 3.4 Education Timeline */
 .education-timeline {
   position: relative;
   margin: 50px auto;
@@ -509,46 +452,51 @@ h4{
   max-width: 1800px;
 }
 
-/* Timeline Title */
 .timeline-title {
   text-align: left;
   font-size: 2em;
   margin-bottom: 20px;
-  color: #16325c;
+  color: var(--color-primary);
 }
 
-/* Timeline Line */
 .education-timeline::before {
   content: "";
   position: absolute;
-  left: 20px; /* Align line to the left */
+  left: 20px;
   top: 0;
   width: 4px;
   height: 100%;
-  background-color: #ddd;
+  background-color: var(--color-border);
 }
 
-/* Timeline Item */
 .timeline-item {
   position: relative;
   margin-bottom: 50px;
   display: flex;
   align-items: flex-start;
-  padding-left: 50px; /* Indent items for space */
+  padding-left: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Timeline Icon */
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Education icons */
 .timeline-icon {
   position: absolute;
-  left: 0; /* Align icons to the left */
+  left: 0;
   top: 0;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #fff;
-  border: 2px solid #16325c;
+  background-color: #ffffff;
+  border: 2px solid var(--color-primary);
   display: flex;
-  justify-content:left;
+  justify-content: center;
   align-items: center;
   text-align: left;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -560,12 +508,12 @@ h4{
   border-radius: 50%;
 }
 
-/* Timeline Content */
+/* Education content card */
 .timeline-content {
-  margin-left: 70px; /* Ensure content clears the icon */
+  margin-left: 70px;
   margin-right: 10px;
-  background-color: #f9f9f9;
-  padding:5px 20px;
+  background-color: var(--color-surface);
+  padding: 5px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -574,73 +522,50 @@ h4{
 
 .timeline-content h3 {
   margin-bottom: 10px;
-  color: #16325c;
+  color: var(--color-primary);
 }
 
 .timeline-content ul {
   padding-left: 20px;
   margin: 0;
   list-style: disc;
-  color: #333;
+  color: #333333;
 }
 
 .timeline-content ul li {
   margin-bottom: 5px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .timeline-content {
-      margin-left: 60px;
+    margin-left: 60px;
   }
 
   .education-timeline::before {
-      left: 15px; /* Adjust line for smaller screens */
+    left: 15px;
   }
 
   .timeline-icon {
-      left: -5px; /* Adjust icons for smaller screens */
+    left: -5px;
   }
 }
 
-/* Animation */
-.timeline-item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
 
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* CSS FOR EDUCATION END HERE*/
-
-/* CSS FOR SKILLS*/
-/* General Reset */
-body {
-  font-family: Arial, sans-serif;
-  margin-right: 10px;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Skills Wrapper */
+/* 3.5 Skills */
 .skills-wrapper {
   padding: 24px;
 }
 
-/* Headers for Skill Sections */
+/* Section headers (skills, certs, etc.) */
 .header {
-  background: #16325c;
-  color: #fff;
+  background: var(--color-primary);
+  color: #ffffff;
   padding: 8px 16px;
   border-radius: 5px;
   font-size: 18px;
   margin-bottom: 16px;
   text-align: left;
-  animation: fadeIn 1s ease-out; /* Section header fade-in */
+  animation: fadeIn 1s ease-out;
 }
 
 /* Badge Container */
@@ -653,82 +578,26 @@ body {
 
 /* Badge Styles */
 .badge {
-  /*background-color: #f6c403;*/
-  background-color:#6a5acd;
-  /*color: #000;*/
-  color: #fff;
+  background-color: var(--color-primary-soft);
+  color: #ffffff;
   padding: 6px 12px;
-  border-radius: 12px;
+  border-radius: 999px;
   font-size: 14px;
-  text-align: center;
-  white-space: nowrap;
-  display: inline-block;
-  cursor: default;
-  animation: slideUp 0.8s ease-out; /* Individual badges slide in */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              background-color 0.25s ease, color 0.25s ease;
 }
 
 /* Hover Effect for Badge */
 .badge:hover {
-  /*background-color: #f3b000;*/
-  background-color: #c7c0f6;
-  color:#030303;
-
-  transform: scale(1.1); /* Slight zoom effect */
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
-/* Keyframes for Animations */
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
 
-@keyframes slideUp {
-  0% {
-      opacity: 0;
-      transform: translateY(40px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-/* CSS FOR JS */
-.badge {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* CSS for CERTIFICATION*/
-/* General Reset */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  margin-right: 10px;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Header Styles */
-.header {
-  background: #16325c;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 5px;
-  font-size: 18px;
-  margin-bottom: 16px;
-  text-align: left;
-  animation: fadeIn 1s ease-out; /* Fade-in effect for headers */
-}
-
-/* Grid Layout */
+/* 3.6 Certifications */
 .certifications-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -736,114 +605,50 @@ body {
   padding: 16px;
 }
 
-/* Certification Box Styles */
 .cert-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   padding: 12px;
- /* background: #ffdf7b;*/
-
- 
-  font-size: 20px;
   border-radius: 5px;
   display: flex;
   align-items: center;
- box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  transform: scale(1);
   opacity: 0;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  animation: slideUp 0.6s ease-out forwards; /* Slide-in animation */
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Certification Images */
+.cert-box:hover {
+  background-color: #edf2ff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 .cert-box img {
   height: 60px;
   margin-right: 16px;
   border-radius: 50%;
-  border: 2px solid #16325c;
+  border: 2px solid var(--color-primary);
 }
 
-/* Placeholder Icon for Other Certifications */
+/* Placeholder icon for non-img certs */
 .icon-classic-interface {
   display: inline-block;
   width: 60px;
   height: 60px;
-  background: #ccc;
-  background-color:#836fff;
+  background-color: var(--color-primary-soft); /* or var(--color-accent); */
   border-radius: 5px;
   margin-right: 16px;
 }
 
-/* Certification Text */
+
 .cert-box span {
   flex: 1;
   font-size: 16px;
-  color: #333;
-}
-
-/* Hover Effect */
-.cert-box:hover {
-  /*background-color: #f3b000;*/
- background-color:#d6d1f3;
- 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-/* Keyframes for Animations */
-@keyframes slideUp {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
-}
-
-/* CSS FOR JS */
-/* CSS FOR JS*/
-.cert-box {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* CSS FOR PROJECTS*/
-/* General Reset */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #f9f9f9;
-  color: #030303;
-  text-align: center;
+  color: #333333;
 }
 
 
-
-.hero-title {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-
-.hero-subtitle {
-  font-size: 1.2em;
-  margin-bottom: 0;
-}
-
-/* Project Section */
+/* 3.7 Projects */
 .projects-section {
   padding: 50px 20px;
   text-align: left;
@@ -857,9 +662,8 @@ body {
   margin: 0 auto;
 }
 
-/* Project Card */
 .project-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -874,15 +678,90 @@ body {
 .project-title {
   font-size: 1.5em;
   margin-bottom: 10px;
-  color: #16325c;
+  color: var(--color-primary);
 }
 
 .project-description {
   font-size: 1em;
   margin-bottom: 15px;
   line-height: 1.6;
-  color: #333;
+  color: #333333;
 }
+
+.project-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+/* 3.8 Footer */
+.footer-bottom {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #e5e7eb;
+  background-color: var(--color-primary);
+  padding: 20px;
+  border-top: 1px solid #0f243f;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.95em;
+}
+
+
+/* ================================
+   4. UTILITIES & ANIMATIONS
+===================================*/
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Project Links */
 .project-links {
@@ -928,4 +807,5 @@ body {
   color: white;
   font-size: 0.95em;
 }
+
 
