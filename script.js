@@ -1,5 +1,30 @@
 
-  //SIDE NAVBAR STYLE 
+    // Toggle Navbar Visibility for Mobile
+  function toggleNavbar() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('show');
+}
+
+// Add animation to the summary component on load
+document.addEventListener("DOMContentLoaded", function () {
+  const summarySection = document.querySelector(".record-view-form");
+
+  // Add a visible class to trigger fade-in animation
+  setTimeout(() => {
+      summarySection.style.opacity = 1;
+      summarySection.style.transform = "translateY(0)";
+  }, 300); // Delay for smoother animation
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const summary = document.getElementById("summary");
+    summary.classList.add("visible");
+});
+
+
+
+
+//SIDE NAVBAR STYLE 
   
   
   document.addEventListener("DOMContentLoaded", () => {
@@ -291,4 +316,5 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
 
