@@ -1,4 +1,79 @@
-  // Toggle Navbar Visibility for Mobile
+
+  //SIDE NAVBAR STYLE 
+  
+  
+  document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(
+    "#hero, #summary-section, #experience, #skills, #education, #certifications, #projects"
+  );
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  const sectionIdFromHref = href => href.split("#")[1];
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle(
+              "active",
+              sectionIdFromHref(link.getAttribute("href")) === id
+            );
+          });
+        }
+      });
+    },
+    {
+      threshold: 0.4, // 40% visible
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
+
+  // Also make click scroll smooth & set active immediately
+  navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      const targetId = sectionIdFromHref(link.getAttribute("href"));
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+        navLinks.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+      }
+    });
+  });
+});
+
+
+// To keep the banner always on the top
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      const href = link.getAttribute("href");
+
+      // Special case for Home
+      if (href === "./index.html" || href === "#hero" || href === "#") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      // ... your existing smooth-scroll code for other sections ...
+    });
+  });
+});
+
+
+
+
+// NAVBAR JS END
+
+
+// Toggle Navbar Visibility for Mobile
   function toggleNavbar() {
     const navLinks = document.querySelector('.nav-links');
     navLinks.classList.toggle('show');
@@ -216,3 +291,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
