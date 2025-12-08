@@ -598,29 +598,61 @@ h4 {
 
 
 /* 3.6 Certifications */
+/* 3.6 Certifications */
+
+.certifications-section {
+  padding: 60px 20px;
+  background: var(--color-bg);
+}
+
+.certifications-inner {
+  max-width: 1100px;          /* aligns with projects/summary width */
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Section title (“Certifications”) */
+#certifications .section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: var(--color-primary);
+}
+
+/* “Salesforce Certifications”, “Other Certifications” */
+#certifications .header {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+/* Grid of cards */
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
-  padding: 16px;
+  margin-bottom: 28px;      /* space between Salesforce / Other sections */
+  padding: 0;               /* align with other sections */
 }
 
 .cert-box {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  padding: 12px;
-  border-radius: 5px;
+  padding: 12px 14px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease,
-              background-color 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .cert-box:hover {
   background-color: #edf2ff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.18);
 }
 
 .cert-box img {
@@ -635,16 +667,15 @@ h4 {
   display: inline-block;
   width: 60px;
   height: 60px;
-  background-color: var(--color-primary-soft); /* or var(--color-accent); */
-  border-radius: 5px;
+  background-color: var(--color-primary-soft);
+  border-radius: 8px;
   margin-right: 16px;
 }
 
-
 .cert-box span {
   flex: 1;
-  font-size: 16px;
-  color: #333333;
+  font-size: 0.95rem;
+  color: var(--color-text);
 }
 
 
@@ -807,5 +838,6 @@ h4 {
   color: white;
   font-size: 0.95em;
 }
+
 
 
