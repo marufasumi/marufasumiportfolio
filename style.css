@@ -59,6 +59,80 @@ h4 {
 }
 
 
+/* ================================
+   2. LAYOUT: HERO, NAVBAR, SECTIONS
+===================================*/
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+  color: #ffffff;
+
+  /* NEW: full screen hero */
+  min-height: 98vh;
+
+  /* Center content nicely */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* A bit smaller padding now that it's full height */
+  padding: 60px 20px;
+}
+
+.hero-title {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero-title span {
+  color: var(--color-accent);
+}
+
+.hero-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.hero-meta span {
+  display: inline-block;
+  margin: 4px 8px;
+  color: #e5e7eb; /* soft light text */
+}
+
+/* Hero image */
+.hero-image {
+  max-width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 20px 0;
+  transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.1);
+}
+
+/* Generic CTA button (if used) */
+.cta-button {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0693e3;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #7d3d0f;
+}
+
+/* Navbar */
+
+
 /* ===========================
    Sidebar Navigation (left)
 =========================== */
@@ -226,22 +300,34 @@ h4 {
 }
 
 
-
-
-
 /* 3.2 Summary / About Me */
+#summary-section {
+  padding-top: 40px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
 .summary-component {
   padding: 40px 20px;
   background: var(--color-bg);
-  text-align: center;
 }
 
+/* Section title aligned with other main sections */
+.section-title {
+  max-width: 1100px;
+  margin: 0 auto 12px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: left;
+}
+
+/* Card */
 .record-view-form {
-  max-width: 1800px;
+  max-width: 1500px;
   margin: 0 auto;
   background-color: var(--color-surface);
   color: var(--color-text);
-  padding: 20px;
+  padding: 24px 24px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
   opacity: 0;
@@ -254,36 +340,64 @@ h4 {
   transform: translateY(0);
 }
 
+/* Two-column layout */
+.summary-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.summary-main {
+  flex: 2 1 60%;
+}
+
+.summary-aside {
+  flex: 1 1 260px;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--color-primary-soft);
+  font-size: 0.9rem;
+}
+
+.summary-aside-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.summary-aside-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-aside-list li {
+  margin-bottom: 6px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.summary-aside-list li span {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Text */
 .output-field {
   text-align: left;
 }
 
-.summary-title {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.summary-subtitle {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.summary-location {
-  font-size: 1em;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
 .summary-description {
-  font-size: 1.1em;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
   color: #555555;
 }
 
 .download-resume {
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 /* Buttons (download + project links) */
@@ -303,6 +417,53 @@ h4 {
   background-color: var(--color-primary-soft);
   transform: scale(1.03);
 }
+
+/* Responsive: stack columns on mobile */
+@media (max-width: 768px) {
+  .summary-layout {
+    flex-direction: column;
+  }
+
+  .summary-aside {
+    margin-top: 10px;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+    text-align: left;
+  }
+}
+/* Make the whole section left-aligned instead of center */
+.summary-component {
+  padding: 40px 20px;
+  background: var(--color-bg);
+  text-align: left;
+}
+
+/* Main text column */
+.summary-main {
+  flex: 2 1 60%;
+  text-align: left;
+}
+
+/* Paragraphs more readable */
+.summary-description {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  color: #555555;
+  text-align: left;
+}
+
+.summary-title {
+  text-align: left !important;
+  max-width: 1100px;
+  margin: 0 auto 20px;
+}
+.summary-component h2 {
+  text-align: left !important;
+}
+
 
 
 /* 3.3 Experience Timeline */
@@ -852,6 +1013,7 @@ h4 {
   color: white;
   font-size: 0.95em;
 }
+
 
 
 
