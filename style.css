@@ -137,54 +137,61 @@ h4 {
    Sidebar Navigation (left)
 =========================== */
 
+/* ===========================
+   Sidebar Navigation (left)
+=========================== */
+/* Sidebar Base */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 260px;
   height: 100vh;
-  background: var(--color-primary);
-  color: #ffffff;
+  background: #0f172a;                 /* deep navy */
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 16px;
-  box-shadow: 2px 0 10px rgba(15, 23, 42, 0.4);
+  padding: 25px 15px;
+  box-shadow: 3px 0 10px rgba(0,0,0,0.3);
   z-index: 1000;
+  transition: transform 0.3s ease;
 }
 
+/* Desktop visible */
+.main-content {
+  margin-left: 260px;
+}
+
+/* Profile */
 .sidebar-profile {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 25px;
 }
 
 .sidebar-image {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  border: 3px solid var(--color-accent);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  object-fit: cover;
-  margin-bottom: 12px;
+  border: 3px solid #0ea5e9;
+  margin-bottom: 10px;
 }
 
 .sidebar-name {
   font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-weight: bold;
 }
 
 .sidebar-role {
   font-size: 0.85rem;
-  color: #e5e7eb;
+  color: #d1d5db;
 }
 
-/* vertical nav links */
+/* Nav Links */
 .nav-links {
   list-style: none;
   width: 100%;
-  padding: 0;
-  margin: 0 0 auto 0; /* push resume button to bottom */
+  margin-top: 10px;
 }
 
 .nav-links li {
@@ -193,15 +200,91 @@ h4 {
 
 .nav-links a {
   display: block;
-  width: 100%;
-  padding: 10px 12px;
+  padding: 10px 14px;
   margin-bottom: 6px;
   text-decoration: none;
   color: #e5e7eb;
   font-weight: 600;
-  font-size: 0.9rem;
   border-radius: 6px;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+  transition: 0.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: #1d4ed8;
+  color: #fff;
+  transform: translateX(3px);
+}
+
+/* Resume Button */
+.sidebar-footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #334155;
+}
+
+.sidebar-resume-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: #0ea5e9;
+  color: #0f172a;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.sidebar-resume-btn:hover {
+  background: #38bdf8;
+}
+
+/* Mobile Toggle Button */
+.sidebar-toggle-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 1200;
+}
+
+/* MOBILE MODE */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);  /* hidden */
+    width: 70%;
+    max-width: 260px;
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);      /* visible */
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .sidebar-toggle-btn {
+    display: flex;                 /* show hamburger */
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+    padding-left: 5px;
+  }
 }
 /* Active section link */
 .nav-links a.active {
@@ -1013,6 +1096,7 @@ h4 {
   color: white;
   font-size: 0.95em;
 }
+
 
 
 
