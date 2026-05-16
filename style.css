@@ -1237,208 +1237,219 @@ h4 {
 
 
 
-/* =====================================================
-   PROJECT CARDS — PREMIUM STYLE
-===================================================== */
+/* =====================================
+   PROJECT SECTION
+===================================== */
 
-.project-card{
-    background:#fff;
-    border-radius:18px;
-    padding:18px;
-    border:1px solid rgba(0,0,0,.06);
+.projects-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
 
-    box-shadow:
-        0 8px 24px rgba(15,23,42,.06);
-
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        border .35s ease;
-
-    position:relative;
-    overflow:hidden;
+    gap:25px;
 }
 
-/* blue accent line */
+
+/* CARD */
+
+.project-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.05);
+
+    transition:.35s ease;
+}
+
+
+/* LEFT ACCENT */
+
 .project-card::before{
+
     content:"";
+
     position:absolute;
+
     left:0;
     top:0;
-    width:5px;
+
+    width:8px;
     height:100%;
-    background:linear-gradient(
-        180deg,
-        #1d4ed8,
-        #0ea5e9
+
+    background:
+    linear-gradient(
+      180deg,
+      #2563eb,
+      #0ea5e9
     );
 }
 
 
 /* Hover */
+
 .project-card:hover{
-    transform:translateY(-8px);
+
+    transform:
+    translateY(-8px);
 
     box-shadow:
-    0 18px 40px rgba(0,0,0,.12);
-
-    border-color:#dbeafe;
+    0 18px 45px rgba(0,0,0,.12);
 }
 
 
-/* Header */
+
+/* HEADER */
+
 .project-card-header{
+
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+    space-between;
+
     align-items:center;
-    cursor:pointer;
 }
 
 
-/* Title */
 .project-title{
-    font-size:1.15rem;
+
+    font-size:1.6rem;
+
     font-weight:700;
+
     color:#0f172a;
-    line-height:1.4;
+
+    margin:0;
 }
 
 
-/* Expand icon */
+
+/* EXPAND BUTTON */
+
 .project-card-toggle{
 
-    width:30px;
-    height:30px;
+    width:38px;
+    height:38px;
 
     border-radius:50%;
+
     background:#eff6ff;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
     color:#2563eb;
-    font-size:18px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:20px;
 
     transition:.3s;
 }
 
 
-/* Description */
+.project-card.expanded
+.project-card-toggle{
+
+    transform:rotate(45deg);
+
+    background:#2563eb;
+
+    color:white;
+}
+
+
+
+/* DESCRIPTION */
+
 .project-description{
 
-    margin-top:16px;
+    margin-top:18px;
 
     color:#475569;
 
-    font-size:.95rem;
-    line-height:1.8;
+    line-height:1.9;
+
+    font-size:1rem;
 
     text-align:left;
 }
 
 
-/* Expand body */
-.project-card-body{
 
-    max-height:0;
-    overflow:hidden;
-
-    transition:
-    max-height .45s ease;
-}
-
-
-/* Expanded */
-.project-card.expanded{
-
-    background:
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #f8fbff
-    );
-
-    border-color:#bfdbfe;
-}
-
-
-.project-card.expanded .project-card-body{
-    max-height:500px;
-    margin-top:12px;
-}
-
-
-.project-card.expanded .project-card-toggle{
-
-    transform:rotate(45deg);
-
-    background:#2563eb;
-    color:white;
-}
-
-
-/* Tags */
+/* TAGS */
 
 .project-tags{
 
     display:flex;
+
     flex-wrap:wrap;
-    gap:8px;
-    margin:18px 0;
+
+    gap:10px;
+
+    margin:
+    20px 0;
 }
 
 
 .project-tag{
 
-    background:#eff6ff;
-
-    color:#1d4ed8;
-
     padding:
-    6px 12px;
+    8px 14px;
 
     border-radius:30px;
 
-    font-size:.78rem;
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:.8rem;
 
     font-weight:600;
-
-    transition:.3s;
-}
-
-
-.project-tag:hover{
-
-    background:#2563eb;
-    color:white;
 }
 
 
 
-/* Links */
+/* LINKS */
+
 .project-links{
 
     display:flex;
+
     gap:12px;
-    margin-top:12px;
+
+    margin-top:20px;
 }
 
 
-/* Github/demo buttons */
+/* ICON BUTTONS */
 
 .project-link{
 
-    width:42px;
-    height:42px;
+    width:48px;
+    height:48px;
 
     border-radius:50%;
 
+    background:#0f172a;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    background:#0f172a;
     color:white;
 
     text-decoration:none;
@@ -1452,25 +1463,56 @@ h4 {
     background:#2563eb;
 
     transform:
-    translateY(-3px)
-    scale(1.05);
+    scale(1.08);
 }
+
+
+
+/* COLLAPSIBLE BODY */
+
+.project-card-body{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:
+    max-height .4s ease;
+}
+
+
+
+.project-card.expanded{
+
+    background:
+    linear-gradient(
+      180deg,
+      white,
+      #f8fbff
+    );
+}
+
+
+.project-card.expanded
+.project-card-body{
+
+    max-height:600px;
+
+    margin-top:15px;
+}
+
 
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-.project-card{
-    padding:15px;
-}
-
 .project-title{
-    font-size:1rem;
+font-size:1.2rem;
 }
 
-.project-description{
-    font-size:.9rem;
+.project-card{
+padding:18px;
 }
 
 }
