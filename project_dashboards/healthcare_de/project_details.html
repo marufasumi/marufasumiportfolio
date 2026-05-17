@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Informatics AI Platform — Marufa Sultana Sumi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+ :root {
+  /* 🌿 NEW LIGHT MEDICAL THEME */
+
+  --navy: #f6f7fb;              /* main background */
+  --navy-mid: #ffffff;          /* cards */
+  --teal: #f28b74;              /* primary coral */
+  --teal-light: #ff9f8a;        /* soft coral */
+  --teal-dim: rgba(242,139,116,0.1);
+
+  --accent: #ff7a59;            /* highlight orange */
+  --warn: #f59e0b;
+
+  --slate: #6b7280;             /* text secondary */
+  --light: #374151;             /* text primary */
+  --white: #111827;             /* headings */
+
+  --mono: 'DM Mono', monospace;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'Outfit', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--slate);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+/* Soft UI upgrade */
+.pipeline-step,
+.profile-card,
+.cluster-card,
+.ror-formula,
+.criteria-list,
+.results-table-wrap,
+.tech-item,
+.panel {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* ── Grid bg ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(13,148,136,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,148,136,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 4rem;
+  background: white;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+
+}
+.nav-logo {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* FOR GITHUB AND DEMO */
+/* ===== NAV ACTIONS ===== */
+.nav-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+/* Base button */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+
+/* 🔥 Live Demo Button */
+.demo-btn {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  font-weight: 500;
+}
+
+.demo-btn:hover {
+  background: #ff6a45;
+  border-color: #ff6a45;
+}
+
+/* 🔴 Pulsing live dot */
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* 💻 GitHub Button */
+/* 💻 GitHub (Secondary) */
+.github-btn {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.github-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* GitHub icon */
+.github-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 4rem 4rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.hero-tag {
+  font-family: var(--mono);
+  color: var(--teal-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-tag::before {
+  content: '';
+  display: inline-block; width: 40px; height: 1px;
+  background: var(--teal-light);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--slate);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+.badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-stats {
+  display: flex; gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(204,214,246,0.08);
+}
+.stat-val {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--white);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* ── Sections ── */
+section {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 6rem 4rem;
+}
+.section-label {
+  font-family: var(--mono);
+  color: var(--teal-light);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--white);
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+.section-body {
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+/* ── Pipeline ── */
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: rgba(13,148,136,0.15);
+  border: 1px solid rgba(13,148,136,0.15);
+  margin-top: 2rem;
+}
+.pipeline-step {
+  background: var(--navy);
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: background 0.25s;
+}
+.pipeline-step:hover { background: var(--navy-mid); }
+.step-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.8rem;
+}
+.step-title {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--light);
+  margin-bottom: 0.5rem;
+}
+.step-desc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--slate);
+}
+.step-num-big {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-family: var(--serif);
+  font-size: 3rem;
+  color: rgba(13,148,136,0.07);
+  line-height: 1;
+}
+
+/* ── ROR explainer ── */
+.ror-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.ror-formula {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  border-left: 3px solid var(--teal);
+  padding: 2rem;
+  font-family: var(--mono);
+}
+.formula-title {
+  font-size: 0.72rem;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.formula-math {
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 2;
+}
+.formula-math span { color: var(--accent); }
+.criteria-list {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 2rem;
+}
+.criteria-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(204,214,246,0.06);
+}
+.criteria-item:last-child { border-bottom: none; }
+.criteria-icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--accent);
+}
+.criteria-text { font-size: 0.88rem; line-height: 1.5; }
+.criteria-text strong { color: var(--light); display: block; margin-bottom: 0.2rem; }
+
+/* ── Model results table ── */
+.results-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(13,148,136,0.2);
+  margin-top: 2.5rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+thead tr {
+  background: rgba(13,148,136,0.1);
+}
+th {
+  text-align: left;
+  padding: 1rem 1.2rem;
+  color: var(--teal-light);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(13,148,136,0.2);
+  font-weight: 500;
+}
+td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(204,214,246,0.05);
+  color: var(--slate);
+}
+tr.best td { background: rgba(13,148,136,0.06); }
+tr.best td:first-child { color: var(--white); font-weight: 500; }
+tr:last-child td { border-bottom: none; }
+.metric-bar-wrap {
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.metric-bar {
+  height: 4px;
+  background: var(--teal);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.metric-bar.dim { background: rgba(13,148,136,0.3); }
+.best-badge {
+  display: inline-block;
+  background: rgba(100,255,218,0.1);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  margin-left: 0.5rem;
+}
+
+/* ── Feature importance ── */
+.fi-list { margin-top: 2rem; }
+.fi-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 60px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(204,214,246,0.05);
+}
+.fi-name {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--light);
+}
+.fi-name.ror-feat { color: var(--accent); }
+.fi-bar-track {
+  background: rgba(204,214,246,0.05);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fi-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--teal);
+  transition: width 1s ease;
+}
+.fi-bar-fill.ror { background: var(--accent); }
+.fi-score {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--slate);
+  text-align: right;
+}
+
+/* ── Scoring framework ── */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.profile-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.profile-card:hover { border-color: var(--teal); }
+.profile-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.profile-card.renal::before { background: #3b82f6; }
+.profile-card.cardiac::before { background: #ef4444; }
+.profile-card.hepatic::before { background: var(--warn); }
+.profile-icon {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.profile-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+}
+.profile-desc {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--slate);
+  margin-bottom: 1.2rem;
+}
+.profile-weights { display: flex; flex-direction: column; gap: 0.4rem; }
+.weight-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 0.75rem;
+}
+.weight-cat { color: var(--slate); }
+.weight-val { color: var(--accent); }
+.weight-val.high { color: var(--warn); font-weight: 500; }
+
+/* ── Cluster ── */
+.cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.cluster-card {
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 2rem;
+  background: var(--navy-mid);
+  position: relative;
+}
+.cluster-id {
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--teal-light); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.cluster-rate {
+  font-family: var(--serif); font-size: 2.8rem;
+  line-height: 1; margin-bottom: 0.5rem;
+}
+.cluster-rate.low { color: #22c55e; }
+.cluster-rate.mid { color: var(--warn); }
+.cluster-rate.high { color: #ef4444; }
+.cluster-size {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--slate); margin-bottom: 1rem;
+}
+.cluster-desc { font-size: 0.85rem; line-height: 1.6; }
+
+/* ── Tech stack ── */
+.tech-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  margin-top: 2rem;
+}
+.tech-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 0.7rem 1.1rem;
+  font-family: var(--mono); font-size: 0.8rem;
+  color: var(--light);
+  border-radius: 2px;
+}
+.tech-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  border-top: 1px solid rgba(13,148,136,0.15);
+  padding: 6rem 4rem;
+}
+.cta-section .section-title { margin: 0 auto 1rem; }
+.cta-buttons {
+  display: flex; gap: 1rem; justify-content: center;
+  margin-top: 2.5rem; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--mono); font-size: 0.82rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.btn-primary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+.btn-primary:hover { background: rgba(100,255,218,0.1); }
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(204,214,246,0.2);
+  color: var(--light);
+}
+.btn-secondary:hover { border-color: var(--light); }
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid rgba(13,148,136,0.1);
+  padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--slate);
+  position: relative; z-index: 1;
+}
+
+/* ── Fade-in animation ── */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .ror-grid, .profiles-grid, .cluster-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-logo">// mss.healthcare-de</div>
+
+  <ul class="nav-links">
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#medallion">Medallion</a></li>
+    <li><a href="#gold">Gold Analytics</a></li>
+    <li><a href="#bi">BI Exports</a></li>
+    <li><a href="#ml">ML Readiness</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="nav-btn github-btn">
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag">Healthcare Data Engineering · Databricks · FHIR R4</div>
+
+    <h1>Healthcare Lakehouse,<br><em>Built for Analytics</em></h1>
+
+    <p class="hero-sub">
+      An enterprise-style healthcare data engineering platform built with Databricks,
+      PySpark, Delta Lake, and FHIR R4 resources. The platform transforms raw healthcare
+      data into Bronze, Silver, and Gold analytics tables for SQL, Power BI, and ML.
+    </p>
+
+    <div class="hero-badges">
+      <span class="badge">Databricks</span>
+      <span class="badge">PySpark</span>
+      <span class="badge">Delta Lake</span>
+      <span class="badge">FHIR R4</span>
+      <span class="badge">Power BI Ready</span>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">555</div>
+        <div class="stat-label">Patients</div>
+      </div>
+      <div>
+        <div class="stat-val">131K</div>
+        <div class="stat-label">Observations</div>
+      </div>
+      <div>
+        <div class="stat-val">52K</div>
+        <div class="stat-label">Claims</div>
+      </div>
+      <div>
+        <div class="stat-val">8</div>
+        <div class="stat-label">Gold Tables</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="pipeline">
+  <div class="section-label fade-up">01 — Data Engineering Pipeline</div>
+  <h2 class="section-title fade-up">FHIR Data to Analytics-Ready Tables</h2>
+  <p class="section-body fade-up">
+    The platform processes FHIR R4 resources through a Databricks Lakehouse pipeline.
+    Raw healthcare files are ingested, normalized, validated, and aggregated into
+    analytics-ready Delta tables.
+  </p>
+
+  <div class="pipeline fade-up">
+    <div class="pipeline-step">
+      <div class="step-num-big">1</div>
+      <div class="step-num">STEP 01</div>
+      <div class="step-title">FHIR Upload</div>
+      <div class="step-desc">Raw FHIR JSON files uploaded into Databricks Volume storage.</div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num-big">2</div>
+      <div class="step-num">STEP 02</div>
+      <div class="step-title">Bronze Ingestion</div>
+      <div class="step-desc">Raw Patient, Encounter, Condition, Observation, Medication, and Claim resources stored as Delta tables.</div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num-big">3</div>
+      <div class="step-num">STEP 03</div>
+      <div class="step-title">Silver Cleaning</div>
+      <div class="step-desc">FHIR fields flattened, cleaned, normalized, and linked by patient-level identifiers.</div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num-big">4</div>
+      <div class="step-num">STEP 04</div>
+      <div class="step-title">Gold Analytics</div>
+      <div class="step-desc">Population health, chronic disease, utilization, medication, and claim cost analytics tables created.</div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num-big">5</div>
+      <div class="step-num">STEP 05</div>
+      <div class="step-title">BI + ML Ready</div>
+      <div class="step-desc">Gold tables exported for Power BI dashboards and future machine learning feature engineering.</div>
+    </div>
+  </div>
+</section>
+
+<section id="medallion">
+  <div class="section-label fade-up">02 — Medallion Architecture</div>
+  <h2 class="section-title fade-up">Bronze, Silver, and Gold Healthcare Layers</h2>
+
+  <div class="profiles-grid fade-up">
+    <div class="profile-card renal">
+      <div class="profile-icon">Bronze</div>
+      <div class="profile-name">Raw Ingestion</div>
+      <div class="profile-desc">
+        Stores raw FHIR healthcare resources while preserving source structure and lineage.
+      </div>
+    </div>
+
+    <div class="profile-card cardiac">
+      <div class="profile-icon">Silver</div>
+      <div class="profile-name">Clean Tables</div>
+      <div class="profile-desc">
+        Normalizes patient, encounter, condition, observation, medication, procedure, and claim tables.
+      </div>
+    </div>
+
+    <div class="profile-card hepatic">
+      <div class="profile-icon">Gold</div>
+      <div class="profile-name">Analytics Layer</div>
+      <div class="profile-desc">
+        Creates population health KPIs, utilization summaries, cost analytics, and dashboard exports.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gold">
+  <div class="section-label fade-up">03 — Gold Analytics Layer</div>
+  <h2 class="section-title fade-up">Business-Ready Healthcare Tables</h2>
+
+  <div class="results-table-wrap fade-up">
+    <table>
+      <thead>
+        <tr>
+          <th>Gold Table</th>
+          <th>Analytics Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>patient_summary</td><td>Patient demographics and utilization profile</td></tr>
+        <tr><td>encounter_utilization_summary</td><td>Ambulatory, emergency, and inpatient utilization</td></tr>
+        <tr><td>chronic_disease_summary</td><td>Diabetes, hypertension, obesity, CKD, COPD, cancer analytics</td></tr>
+        <tr><td>medication_summary</td><td>Medication burden and polypharmacy analytics</td></tr>
+        <tr><td>observation_vitals_labs_summary</td><td>BMI, glucose, HbA1c, oxygen saturation, vitals</td></tr>
+        <tr><td>procedure_careplan_summary</td><td>Treatment complexity and care management</td></tr>
+        <tr><td>claim_cost_summary</td><td>Institutional and pharmacy claim cost analytics</td></tr>
+        <tr class="best"><td>population_health_dashboard</td><td>Executive KPI and ML-ready feature table</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="bi">
+  <div class="section-label fade-up">04 — Dashboard Exports</div>
+  <h2 class="section-title fade-up">Power BI-Ready Healthcare Data</h2>
+  <p class="section-body fade-up">
+    Gold analytics outputs were exported as CSV files for dashboarding and portfolio reproducibility.
+  </p>
+
+  <div class="cluster-grid fade-up">
+    <div class="cluster-card">
+      <div class="cluster-id">Population Health</div>
+      <div class="cluster-rate low">247</div>
+      <div class="cluster-size">Low-risk patients</div>
+      <div class="cluster-desc">Risk categories created for Low, Medium, and High patient populations.</div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Claims Analytics</div>
+      <div class="cluster-rate mid">$240K</div>
+      <div class="cluster-size">Avg total claim cost</div>
+      <div class="cluster-desc">Financial analytics created for institutional and pharmacy claim cost reporting.</div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">High Risk</div>
+      <div class="cluster-rate high">77</div>
+      <div class="cluster-size">High-risk patients</div>
+      <div class="cluster-desc">High-risk group identified using chronic disease, medication, cost, and utilization burden.</div>
+    </div>
+  </div>
+</section>
+
+<section id="ml">
+  <div class="section-label fade-up">05 — ML Readiness</div>
+  <h2 class="section-title fade-up">Feature Store Foundation for Clinical AI</h2>
+
+  <div class="tech-grid fade-up">
+    <div class="tech-item"><div class="tech-dot"></div>Databricks</div>
+    <div class="tech-item"><div class="tech-dot"></div>PySpark</div>
+    <div class="tech-item"><div class="tech-dot"></div>Delta Lake</div>
+    <div class="tech-item"><div class="tech-dot"></div>FHIR R4</div>
+    <div class="tech-item"><div class="tech-dot"></div>Spark SQL</div>
+    <div class="tech-item"><div class="tech-dot"></div>Power BI Exports</div>
+    <div class="tech-item"><div class="tech-dot"></div>Population Health Features</div>
+    <div class="tech-item"><div class="tech-dot"></div>Claims Features</div>
+    <div class="tech-item"><div class="tech-dot"></div>Clinical Risk Features</div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="section-label" style="text-align:center;margin-bottom:0.8rem">Open Source</div>
+  <h2 class="section-title" style="text-align:center">Portfolio-Ready Healthcare Data Platform</h2>
+  <p style="max-width:540px;margin:0 auto;color:var(--slate);line-height:1.8;">
+    The GitHub repository includes notebooks, documentation, architecture diagrams,
+    validation files, schemas, configs, sample data, and dashboard exports.
+  </p>
+
+  <div class="cta-buttons">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="btn btn-primary">View on GitHub →</a>
+  </div>
+</div>
+
+<footer>
+  <span>Marufa Sultana Sumi · Healthcare Informatics · Data Engineering</span>
+  <span style="font-family:var(--mono);color:var(--teal)">Databricks · FHIR R4 · PySpark</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
