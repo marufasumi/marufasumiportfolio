@@ -1,638 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marufa Sumi Portfolio</title>
-    <link rel="stylesheet" href="/style.css">
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marufa Sumi Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-   <!-- Mobile Toggle Button -->
-<button class="sidebar-toggle-btn" id="sidebarToggle">
-    <i class="fas fa-bars"></i>
-</button>
+  <header class="top-navbar">
+    <div class="top-navbar-inner">
+      <a href="./index.html" class="brand-wrap">
+        <img src="./assets/ProfilePic_2.png" alt="Marufa Sumi" class="brand-avatar" />
+        <span class="brand-name">Marufa Sumi</span>
+      </a>
 
-<!-- Sidebar -->
-<nav class="sidebar" id="sidebar">
+      <nav class="top-nav-links">
+        <ul class="nav-links">
+          <!--<li><a href="./index.html">Home</a></li>-->
+          <li><a href="#summary-section">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-    <div class="sidebar-profile">
-        <img src="./images/ProfilePic_2.png" alt="Profile" class="sidebar-image">
-        <h2 class="sidebar-name">Marufa Sultana Sumi</h2>
-        <p class="sidebar-role">Data Analyst & Clinical Data Science Enthusiast</p>
+      <div class="top-navbar-actions">
+        <a href= "https://raw.githubusercontent.com/marufasumi/Resume/main/Marufa_Sumi.pdf" class="resume-btn">Resume</a>
+        
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#summary-section">About Me</a></li>
-        <li><a href="#experience">Experiences</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#projects">Projects</a></li>
-    </ul>
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="resume.pdf" class="mobile-resume-link">Resume</a>
+    <a href="https://carnelian-echo-98c.notion.site/Marufa-Sumi-Blog-32ee7d7fddd280fd811ef9a1fddb6773?source=copy_link" target="_blank">Blog</a>
+  </div>
 
-   <!-- <div class="sidebar-footer">
-        <a href="https://raw.githubusercontent.com/marufasumi/Resume/main/Marufa_Sumi.pdf"
-           class="sidebar-resume-btn" download>
-            Download Resume
-        </a>
-    </div> -->
-
-</nav>
-
-  <!-- Main content area (everything to the right of sidebar) -->
   <main class="main-content">
-    <!-- Hero Section -->
+
+    <!-- HERO -->
     <header id="hero" class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">
-          Hi, I'm <span>Marufa Sultana Sumi</span>
-        </h1>
-        <h2 class="hero-subtitle">
-          Data Analyst &amp; Clinical Data Science Enthusiast
-        </h2>
-
+        <h1 class="hero-title">Hi, I'm <span>Marufa Sultana Sumi</span></h1>
+        <h2 class="hero-subtitle">Healthcare Data Engineer| Pharma R&amp;D, ML &amp; Health Informatics</h2>
         <div class="hero-meta">
-          <span>📍 Canton, MI (US Permanent Resident)</span>
-          <span>🎓 MS in Analytics, Georgia Tech (in progress)</span>
+          <span>📍 Ann Arbor, MI (US Permanent Resident)</span>
+          <span>🎓GT OMSA | Incoming UMich MSIS ’28</span>
         </div>
-
         <div class="social-links">
-          <a href="https://www.facebook.com/marufasumi"
-             class="social-link"
-             target="_blank"
-             aria-label="Facebook">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/marufasumi"
-             class="social-link"
-             target="_blank"
-             aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="mailto:marufasumi081@gmail.com"
-             class="social-link"
-             aria-label="Gmail">
-            <i class="fas fa-envelope"></i>
-          </a>
-          <a href="tel:+18599138419"
-             class="social-link"
-             aria-label="Phone">
-            <i class="fas fa-phone"></i>
-          </a>
-          <a href="https://github.com/marufasumi"
-             class="social-link"
-             target="_blank"
-             aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
+          <a href="https://www.facebook.com/marufasumi" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.linkedin.com/in/marufasumi" class="social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:marufasumi081@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="tel:+18599138419" class="social-link" aria-label="Phone"><i class="fas fa-phone"></i></a>
+          <a href="https://github.com/marufasumi" class="social-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
     </header>
 
-    <!-- NAVBAR AND HERO COMPONENT END HERE-->
-        
+    <!-- ABOUT -->
+    <section id="summary-section" class="summary-component section-block">
+      <div class="section-shell">
+        <h2 class="section-title centered-title">About Me</h2>
+        <div class="record-view-form">
+          <div class="summary-layout">
+            <div class="summary-main">
+              <div id="summary" class="output-field">
+                <p class="summary-description">
+                  I am a clinical data scientist with a background in pharmaceutical quality control, analytical chemistry, healthcare analytics, and machine learning. My career began in pharmaceutical laboratories, where I worked with HPLC analysis, drug stability studies, GMP documentation, and analytical testing.
+                </p>
 
-<!-- Summary Component -->
+                <p class="summary-description">
+                Today, I apply Python, SQL, statistical modeling, and machine learning to healthcare and clinical data problems, including real-world evidence, adverse drug reaction detection, pharmacovigilance, disease-risk prediction, and clinical data pipelines.
+               </p>
 
-<section id="summary-section" class="summary-component">
-    <div class="record-view-form">
-        <div class="layout">
-            <div class="layout-item">
-                <div id="summary" class="output-field">
-                    <h2 class="summary-title">About Me</h2>
-                  <!-- <p class="summary-subtitle">Associate Technical Consultant, Perficient, Inc</p>
-                    <p class="summary-location">Canton, Michigan, USA</p> --> 
-
-                    <p class="summary-description">
-                        I am a data analyst and clinical data science enthusiast with a strong background in pharmaceutical sciences, healthcare analytics, and machine learning. My experience ranges from laboratory-based research and GMP-compliant quality control to data analysis, predictive modeling, and real-world evidence (RWE) workflows.
-
-I enjoy working at the intersection of pharmaceutical science and data analytics, transforming complex healthcare and operational datasets into meaningful insights. Currently, I am pursuing my MS in Analytics at Georgia Tech, where I am strengthening my skills in statistical modeling, machine learning, data visualization, and clinical data analysis.
-
-My goal is to contribute to data-driven healthcare innovation by combining my scientific foundation with modern analytical and machine learning tools.
-                        </p>
-
-                    <!-- Download Resume Button -->
-                    <div class="download-resume">
-                        <a href="path/to/your-resume.pdf" download class="download-button">Download Resume</a>
-                    </div>
+               <p class="summary-description">
+                 I am pursuing an MS in Analytics at Georgia Tech and will begin the MS in Information program at the University of Michigan School of Information with a 75% merit scholarship. My goal is to bridge pharmaceutical science, health informatics, and clinical AI to support safer drugs and better patient outcomes.
+               </p>
+                  
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
-
-
-
- <!-- Experience Component Start Here -->
-<section id="experience">
-<H3 class="summary-title"-ali>Professional Experiences</H3>
-<ul class="timeline">
-  <li class="timeline__item">
-      <div class="timeline__icon">📌</div>
-      <div class="timeline__details">
-          <div class="timeline__header">
-              <span class="timeline__role">Associate Technical Consultant</span>
-              <span class="timeline__date">August,2023 - Dec,2024</span>
+            <aside class="summary-aside">
+              <h3 class="summary-aside-title">Quick Highlights</h3>
+              <ul class="summary-aside-list">
+                <li><span>Focus:</span> Healthcare Data Engineering, Health Data Scientist, RWE, Healthcare AI</li>
+                <li><span>Education:</span> MS Analytics, Georgia Tech | Incoming UMich MSIS</li>
+                <li><span>Background:</span> Pharmaceutical QC, GMP, Analytical Chemistry</li>
+                <li><span>Location:</span> Canton, Michigan</li>
+                <li><span>Interest:</span> Pharmacovigilance, Health Informatics, ML</li>
+              </ul>
+            </aside>
           </div>
-          <div class="timeline__company">Perficient Inc,Livonia,MI</div>
-          <div class="timeline__description">
-            <ul>
-               <li>Analyzed large operational datasets to identify process gaps, data-quality issues, and workflow inefficiencies.</li>
-               <li>Built and maintained dashboards and reports to deliver clear insights to business and technical stakeholders.</li>
-               <li>Automated data cleaning, validation, and transformation processes to reduce manual workload and improve accuracy.</li>
-               <li>Performed root-cause analysis on data discrepancies using logs, exploratory analysis, and structured debugging.</li>
-               <li>Partnered with cross-functional teams to gather requirements and translate business questions into measurable metrics.</li>
-               <li>Documented data models, reporting structures, and workflows to support analytics and decision-making.</li>
-               <li>Supported testing, validation, and deployment of enhancements across multiple environments to ensure reliable data delivery.</li>
-           </ul>
-          </div>
-      </div>
-  </li>
-  <<li class="timeline__item">
-  <div class="timeline__icon">🔬</div>
-  <div class="timeline__details">
-    <div class="timeline__header">
-      <span class="timeline__role">Senior Officer, Quality Control</span>
-      <span class="timeline__date">Feb 2016 – Aug 2016</span>
-    </div>
-    <div class="timeline__company">Renata Limited · Mirpur, Dhaka, Bangladesh</div>
-    <div class="timeline__description">
-      <ul>
-        <li>Performed chemical and physical analysis of raw materials, in-process samples, and finished pharmaceutical products.</li>
-        <li>Operated analytical instruments including HPLC, GC, UV–Vis, FT-IR, TLC, KF Titrator, Auto-Titrator, and dissolution/disintegration testers.</li>
-        <li>Conducted method verification, impurity profiling, assay development, and stability studies to ensure product accuracy and safety.</li>
-        <li>Completed GMP-compliant documentation, source validation of raw materials, and quality review for regulatory readiness.</li>
-      </ul>
-    </div>
-  </div>
-</li>
-
-  <li class="timeline__item">
-  <div class="timeline__icon">🔬</div>
-  <div class="timeline__details">
-    <div class="timeline__header">
-      <span class="timeline__role">Officer, Quality Control</span>
-      <span class="timeline__date">Jan 2014 – Jan 2016</span>
-    </div>
-    <div class="timeline__company">Incepta Pharmaceuticals Limited · Savar, Dhaka, Bangladesh</div>
-    <div class="timeline__description">
-      <ul>
-        <li>Performed QC analysis of raw materials, intermediates, and finished products in accordance with pharmacopeial standards (USP/BP).</li>
-        <li>Operated HPLC, GC, UV–Vis, IR, KF Titrator, and dissolution/disintegration testing equipment for routine quality assessments.</li>
-        <li>Maintained CRS/working standards, calibration logs, and laboratory documentation to support GMP compliance.</li>
-        <li>Supported batch release testing, impurity analysis, and method validation activities across multiple production lines.</li>
-      </ul>
-    </div>
-  </div>
-</li>
-<li class="timeline__item">
-  <div class="timeline__icon">🏭</div>
-  <div class="timeline__details">
-    <div class="timeline__header">
-      <span class="timeline__role">In-Plant Trainee</span>
-      <span class="timeline__date">Jan 2013 – Feb 2013</span>
-    </div>
-    <div class="timeline__company">Eskayef Bangladesh Limited · Dhaka, Bangladesh</div>
-    <div class="timeline__description">
-      <ul>
-        <li>Completed structured rotations across Manufacturing, QA, Product Development, Warehouse, Engineering, and Sales & Marketing units.</li>
-        <li>Gained hands-on exposure to solid, liquid, and topical formulation processes in GMP-regulated environments.</li>
-        <li>Observed quality control workflows, batch documentation practices, and compliance procedures.</li>
-        <li>Developed foundational understanding of pharmaceutical production operations and end-to-end product lifecycle.</li>
-      </ul>
-    </div>
-  </div>
-</li>
-  
-  </section>
-
-<!--EXPERIENCE COMPONENT END HERE-->
-
-
-
-<!-- SKILL COMPONENT START HERE -->
-<section id="skills">
-    <div class="skills-wrapper">
-        
-        <h3>Skills and Methodologies</h3>
-
-        <!-- Technical Skills -->
-        <h2 class="header">Technical Skills</h2>
-        <div class="badge-container">
-            <span class="badge">Python</span>
-            <span class="badge">SQL</span>
-            <span class="badge">Pandas</span>
-            <span class="badge">NumPy</span>
-            <span class="badge">SciPy</span>
-            <span class="badge">Scikit-learn</span>
-            <span class="badge">TensorFlow</span>
-            <span class="badge">Keras</span>
-            <span class="badge">Machine Learning</span>
-            <span class="badge">Deep Learning</span>
-            <span class="badge">Time-Series Forecasting</span>
-            <span class="badge">ARIMA</span>
-            <span class="badge">SARIMA</span>
-            <span class="badge">Prophet</span>
-            <span class="badge">Feature Engineering</span>
-            <span class="badge">Statistical Modeling</span>
-            <span class="badge">EDA</span>
         </div>
-
-        <!-- Visualization Tools -->
-        <h2 class="header">Data Visualization</h2>
-        <div class="badge-container">
-            <span class="badge">Matplotlib</span>
-            <span class="badge">Seaborn</span>
-            <span class="badge">Power BI</span>
-            <span class="badge">Excel (Advanced)</span>
-            <span class="badge">Jupyter Notebook</span>
-        </div>
-
-        <!-- Tools & Platforms -->
-        <h2 class="header">Tools & Platforms</h2>
-        <div class="badge-container">
-            <span class="badge">Git</span>
-            <span class="badge">GitHub</span>
-            <span class="badge">Postman</span>
-            <span class="badge">Linux (Basic)</span>
-            <span class="badge">REST API</span>
-            <span class="badge">JSON</span>
-            <span class="badge">CSV / Excel Pipelines</span>
-            <span class="badge">VS Code</span>
-        </div>
-
-        <!-- Healthcare & Pharma Analytics -->
-        <h2 class="header">Healthcare & Pharmaceutical Analytics</h2>
-        <div class="badge-container">
-            <span class="badge">FAERS Pharmacovigilance</span>
-            <span class="badge">Drug Safety Analysis</span>
-            <span class="badge">RWE (Real-World Evidence)</span>
-            <span class="badge">QC Analytics</span>
-            <span class="badge">GMP Documentation</span>
-            <span class="badge">Assay Validation</span>
-            <span class="badge">Stability Studies</span>
-        </div>
-
-        <!-- Methodologies -->
-        <h2 class="header">Software Methodologies</h2>
-        <div class="badge-container">
-            <span class="badge">Agile</span>
-            <span class="badge">Scrum</span>
-            <span class="badge">Kanban</span>
-            <span class="badge">Waterfall</span>
-        </div>
-
-        <!-- Soft Skills -->
-        <h2 class="header">Soft Skills</h2>
-        <div class="badge-container">
-            <span class="badge">Problem Solving</span>
-            <span class="badge">Communication</span>
-            <span class="badge">Teamwork</span>
-            <span class="badge">Adaptability</span>
-            <span class="badge">Attention to Detail</span>
-            <span class="badge">Leadership</span>
-        </div>
-
-    </div>
-</section>
-<!-- SKILL COMPONENT END HERE -->
-
-<!--EDUCATION COMPONENT START HERE-->
-<section id="education">
-  <div class="education-timeline">
-    <h2 class="timeline-title">Education & Training</h2>
-
-    <!-- Timeline Item: MS in Analytics -->
-    <div class="timeline-item">
-      <div class="timeline-icon">
-        <img src="./images/Graduation_cap.jpg" alt="Georgia Tech Logo">
       </div>
-      <div class="timeline-content">
-        <h3>Master of Science in Analytics</h3>
-        <ul>
-          <li>Georgia Institute of Technology</li>
-          <li>Aug 2024 – Present</li>
-          <li>Focus: Machine Learning, Statistical Modeling, Time-Series Forecasting, Healthcare Analytics</li>
-        </ul>
-      </div>
-    </div>
-
-     <!-- Timeline Item: Master of Pharmacy -->
-    <div class="timeline-item">
-      <div class="timeline-icon">
-        <img src="./images/Graduation_cap.jpg" alt="University Logo">
-      </div>
-      <div class="timeline-content">
-        <h3>Master of Pharmacy (M.Pharm)</h3>
-        <ul>
-          <li>State University of Bangladesh</li>
-          <li>CGPA: 3.98 / 4.0</li>
-          <li>Graduated: 2014</li>
-        </ul>
-      </div>
-    </div>
-
-     <!-- Timeline Item: Bachelor of Pharmacy -->
-    <div class="timeline-item">
-      <div class="timeline-icon">
-        <img src="./images/Graduation_cap.jpg" alt="University Logo">
-      </div>
-      <div class="timeline-content">
-        <h3>Bachelor of Pharmacy (B.Pharm)</h3>
-        <ul>
-          <li>State University of Bangladesh</li>
-          <li>CGPA: 3.92 / 4.0</li>
-          <li>Graduated: 2013</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Timeline Item: DevMountain -->
-    <div class="timeline-item">
-      <div class="timeline-icon">
-        <img src="./images/Graduation_cap.jpg" alt="Devmountain Logo">
-      </div>
-      <div class="timeline-content">
-        <h3>Software Engineering Apprenticeship</h3>
-        <ul>
-          <li>Devmountain Bootcamp (BrightPath Program)</li>
-          <li>Apr 2023 – Jul 2023</li>
-          <li>Full-stack fundamentals, Java, Spring Boot, JavaScript, SQL, Testing</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Timeline Item: Salesforce Training -->
-    <div class="timeline-item">
-      <div class="timeline-icon">
-        <img src="./images/Graduation_cap.jpg" alt="Salesforce Logo">
-      </div>
-      <div class="timeline-content">
-        <h3>Salesforce Developer Trainee</h3>
-        <ul>
-          <li>Soft Innovas, New Jersey</li>
-          <li>Mar 2022 – Nov 2022</li>
-          <li>Training in Salesforce Administration, Apex, Flows, LWC fundamentals</li>
-        </ul>
-      </div>
-    </div>
-
-
-  </div>
-</section>
-<!--EDUCATION COMPONENT END HERE-->
-
-
-
-<!--CERTIFICATION COMPONENT START HERE-->
-<!-- CERTIFICATION COMPONENT START HERE -->
-<section id="certifications" class="certifications-section">
-  <div class="certifications-inner">
-    
-    <h3 class="section-title">Certifications</h3>
-    
-    <h2 class="header">Salesforce Certifications</h2>
-
-    <div class="certifications-grid">
-      <!-- Salesforce Certifications -->
-      <div class="cert-box">
-        <img src="./images/cert_logo.png" alt="Salesforce Certified Administrator">
-        <span>Salesforce Certified Administrator</span>
-      </div>
-      <div class="cert-box">
-        <img src="./images/cert_logo.png" alt="Salesforce Certified Platform Developer I">
-        <span>Salesforce Certified Platform Developer I</span>
-      </div>
-      <div class="cert-box">
-        <img src="./images/cert_logo.png" alt="Salesforce Certified AI Associate">
-        <span>Salesforce Certified AI Associate</span>
-      </div>
-      <div class="cert-box">
-        <img src="./images/cert_logo.png" alt="Salesforce Certified Data Cloud Consultant">
-        <span>Salesforce Certified Data Cloud Consultant</span>
-      </div>
-    </div>
-
-    <h2 class="header">Other Certifications</h2>
-
-    <div class="certifications-grid">
-      <!-- Other Certifications -->
-      <div class="cert-box">
-        <div class="icon-classic-interface"></div>
-        <span>Introduction to Java Programming (edX)</span>
-      </div>
-      <div class="cert-box">
-        <div class="icon-classic-interface"></div>
-        <span>Agile Methodology Virtual Experience Program (Cognizant)</span>
-      </div>
-      <div class="cert-box">
-        <div class="icon-classic-interface"></div>
-        <span>Introduction to Cloud Computing (edX)</span>
-      </div>
-      <div class="cert-box">
-        <div class="icon-classic-interface"></div>
-        <span>Processing Data with NumPy (Udemy)</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-<!-- CERTIFICATION COMPONENT END HERE -->
-
-<!--CERTIFICATION COMPONENT END HERE-->
-
-<!--PROJECT COMPONENT START HERE-->
-
-
-    <!-- Project Section -->
-   <!-- Enterprise Healthcare Informatics AI Platform -->
-
-<!-- Enterprise Healthcare Informatics AI Platform -->
-<div class="project-card expanded">
-
-    <div class="project-card-header">
-        <h3 class="project-title">
-            Enterprise Healthcare Informatics AI Platform
-        </h3>
-        <span class="project-card-toggle">+</span>
-    </div>
-
-    <div class="project-card-body">
-
-        <p class="project-description">
-            Built an end-to-end healthcare data engineering and analytics platform using
-            Databricks Lakehouse Architecture. Implemented FHIR R4 ingestion,
-            Bronze/Silver/Gold medallion pipelines, PySpark transformations, SQL analytics,
-            claims analytics, utilization analytics, Power BI-ready exports, and ML feature
-            store preparation.
-        </p>
-
-        <div class="project-tags">
-            <span class="project-tag">Databricks</span>
-            <span class="project-tag">PySpark</span>
-            <span class="project-tag">SQL</span>
-            <span class="project-tag">Delta Lake</span>
-            <span class="project-tag">FHIR R4</span>
-            <span class="project-tag">Power BI</span>
-        </div>
-
-        <div class="project-links">
-            <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
-               target="_blank"
-               class="project-link">
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-
-            <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
-               target="_blank"
-               class="project-link">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-
-    </div>
-
-</div>
-
-      
-<!-- Population Health & Healthcare Analytics Platform -->
-
-<!-- Population Health & Healthcare Analytics Platform -->
-
-<div class="project-card expanded">
-
-    <div class="project-card-header">
-
-        <h3 class="project-title">
-
-            Population Health & Healthcare Analytics Platform
-
-        </h3>
-
-        <span class="project-card-toggle">+</span>
-
-    </div>
-
-
-
-    <div class="project-card-body">
-
-        <p class="project-description">
-
-            Conducted end-to-end healthcare analytics using integrated
-            Gold-layer patient datasets built on Databricks Lakehouse Architecture.
-
-            Performed Population Health Analytics, Risk Stratification,
-            Chronic Disease Analysis, Claims & Financial Analytics,
-            and Healthcare Utilization Analytics using SQL.
-
-            Generated healthcare KPIs and business insights for
-            population risk management and operational decision-making.
-
-        </p>
-
-
-
-        <div class="project-tags">
-
-            <span class="project-tag">Healthcare Analytics</span>
-
-            <span class="project-tag">Population Health</span>
-
-            <span class="project-tag">SQL</span>
-
-            <span class="project-tag">Databricks</span>
-
-            <span class="project-tag">Risk Analytics</span>
-
-            <span class="project-tag">Claims Analytics</span>
-
-            <span class="project-tag">Utilization Analytics</span>
-
-            <span class="project-tag">Power BI</span>
-
-        </div>
-
-
-
-        <div class="project-tags">
-
-            <span class="project-tag">
-                Domain: Population Health Analytics
-            </span>
-
-            <span class="project-tag">
-                Domain: Healthcare Analytics
-            </span>
-
-            <span class="project-tag">
-                Domain: Clinical Informatics
-            </span>
-
-        </div>
-
-
-
-        <div class="project-links">
-
-            <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
-               target="_blank"
-               class="project-link">
-
-                <i class="fas fa-external-link-alt"></i>
-
-            </a>
-
-
-
-            <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
-               target="_blank"
-               class="project-link">
-
-                <i class="fab fa-github"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-
-</div>
-           
-
-          
     </section>
 
-   
-<!--PROJECT COMPONENT END HERE-->
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section-block">
+      <div class="section-shell">
+        <h2 class="section-title centered-title">Professional Experience</h2>
+        <ul class="timeline">
+          <li class="timeline__item">
+            <div class="timeline__icon">📌</div>
+            <div class="timeline__details">
+              <div class="timeline__header">
+                <span class="timeline__role">Associate Technical Consultant</span>
+                <span class="timeline__date">Aug 2023 – Dec 2024</span>
+              </div>
+              <div class="timeline__company">Perficient Inc · Livonia, MI</div>
+              <div class="timeline__description">
+                <ul>
+                  <li>Analyzed operational datasets to identify process gaps, data-quality issues, and workflow inefficiencies.</li>
+                  <li>Built and maintained dashboards and reports for business and technical stakeholders.</li>
+                  <li>Automated data cleaning, validation, and transformation processes to reduce manual effort.</li>
+                  <li>Performed root-cause analysis on data discrepancies using structured debugging and exploratory analysis.</li>
+                  <li>Partnered with cross-functional teams to translate business needs into measurable analytics solutions.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__icon">🔬</div>
+            <div class="timeline__details">
+              <div class="timeline__header">
+                <span class="timeline__role">Senior Officer, Quality Control</span>
+                <span class="timeline__date">Feb 2016 – Aug 2016</span>
+              </div>
+              <div class="timeline__company">Renata Limited · Dhaka, Bangladesh</div>
+              <div class="timeline__description">
+                <ul>
+                  <li>Performed chemical and physical analysis of pharmaceutical products and raw materials.</li>
+                  <li>Operated HPLC, GC, UV–Vis, FT-IR, TLC, KF Titrator, and dissolution testing systems.</li>
+                  <li>Supported stability studies, assay development, and impurity profiling.</li>
+                  <li>Maintained GMP-compliant documentation for regulatory readiness.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__icon">🧪</div>
+            <div class="timeline__details">
+              <div class="timeline__header">
+                <span class="timeline__role">Officer, Quality Control</span>
+                <span class="timeline__date">Jan 2014 – Jan 2016</span>
+              </div>
+              <div class="timeline__company">Incepta Pharmaceuticals Limited · Dhaka, Bangladesh</div>
+              <div class="timeline__description">
+                <ul>
+                  <li>Performed QC analysis of raw materials, intermediates, and finished products.</li>
+                  <li>Used HPLC, GC, UV–Vis, IR, KF Titrator, and dissolution/disintegration equipment.</li>
+                  <li>Maintained calibration logs, standards, and laboratory documentation.</li>
+                  <li>Supported batch release testing and method validation workflows.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__icon">🏭</div>
+            <div class="timeline__details">
+              <div class="timeline__header">
+                <span class="timeline__role">In-Plant Trainee</span>
+                <span class="timeline__date">Jan 2013 – Feb 2013</span>
+              </div>
+              <div class="timeline__company">Eskayef Bangladesh Limited · Dhaka, Bangladesh</div>
+              <div class="timeline__description">
+                <ul>
+                  <li>Completed rotations across Manufacturing, QA, Product Development, Warehouse, and Engineering.</li>
+                  <li>Observed GMP-regulated pharmaceutical production workflows.</li>
+                  <li>Developed foundational understanding of end-to-end pharmaceutical operations.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-<!--Footer-->
-<div class="footer-bottom">
-    <p>&copy; 2026 Marufa Sultana Sumi. All Rights Reserved.</p>
+    <!-- SKILLS -->
+    <section id="skills" class="section-block">
+      <div class="section-shell skills-wrapper">
+        <h2 class="section-title centered-title">Skills and Methodologies</h2>
+        <h3 class="header">Technical Skills</h3>
+        <div class="badge-container">
+          <span class="badge">Python</span><span class="badge">SQL</span><span class="badge">Pandas</span>
+          <span class="badge">NumPy</span><span class="badge">SciPy</span><span class="badge">Scikit-learn</span>
+          <span class="badge">TensorFlow</span><span class="badge">Keras</span><span class="badge">Machine Learning</span>
+          <span class="badge">Deep Learning</span><span class="badge">Data Visualization</span>
+          <span class="badge">Power BI</span><span class="badge">Salesforce</span><span class="badge">Databricks</span>
+        </div>
+        <h3 class="header">Healthcare / Clinical Data</h3>
+        <div class="badge-container">
+          <span class="badge">Healthcare Data Engineering</span><span class="badge">Healthcare Data Analysis</span>
+          <span class="badge">Real World Evidence</span><span class="badge">Pharmacovigilance</span>
+          <span class="badge">FAERS</span><span class="badge">HL7</span><span class="badge">FHIR</span>
+        </div>
+        <h3 class="header">Methodologies</h3>
+        <div class="badge-container">
+          <span class="badge">EDA</span><span class="badge">Feature Engineering</span><span class="badge">Model Evaluation</span>
+          <span class="badge">Dashboarding</span><span class="badge">Data Cleaning</span><span class="badge">ETL</span></span><span class="badge">Data Lakehouse</span>
+          <span class="badge">Statistical Modeling</span><span class="badge">Predictive Analytics</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section-block">
+      <div class="section-shell">
+        <h2 class="section-title centered-title">Education</h2>
+        <div class="education-timeline">
+          <div class="timeline-item">
+             <div class="timeline-icon">
+             <i class="fas fa-graduation-cap"></i>
+              </div>
+            <div class="timeline-content">
+              <h3>MS in Analytics</h3>
+              <ul>
+                <li>Georgia Institute of Technology</li>
+                <li>Focus on analytics, machine learning, and data-driven decision making</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Bachelor of Pharmacy</h3>
+              <ul>
+                <li>State University of Bangladesh</li>
+                <li>Strong foundation in pharmaceutical sciences and research</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="certifications-section" id="certifications">
+      <div class="certifications-container">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-group">
+          <div class="cert-group-label">SALESFORCE CERTIFICATIONS</div>
+          <div class="cert-grid">
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-certificate"></i></div><div class="cert-text">Salesforce Certified <br />Administrator</div></div>
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-certificate"></i></div><div class="cert-text">Salesforce Certified <br />Platform Developer I</div></div>
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-robot"></i></div><div class="cert-text">Salesforce Certified <br />AI Associate</div></div>
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-database"></i></div><div class="cert-text">Salesforce Certified <br />Data Cloud Consultant</div></div>
+          </div>
+        </div>
+        <div class="cert-group">
+          <div class="cert-group-label">OTHER CERTIFICATIONS</div>
+          <div class="cert-grid">
+            <div class="cert-card"><div class="cert-icon-box"><i class="fab fa-java"></i></div><div class="cert-text">Introduction to Java <br />Programming (edX)</div></div>
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-users-cog"></i></div><div class="cert-text">Agile Methodology <br />Virtual Experience (Cognizant)</div></div>
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-cloud"></i></div><div class="cert-text">Introduction to Cloud <br />Computing (edX)</div></div>
+            <div class="cert-card"><div class="cert-icon-box"><i class="fas fa-file-alt"></i></div><div class="cert-text">Processing Data with <br />NumPy (Udemy)</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PROJECTS SECTION
+         - Filter tabs by category
+         - Expandable project cards
+         - GitHub + Demo links
+    ========================================== -->
+    <section id="projects" class="section-block projects-home-section">
+      <div class="section-shell">
+        <h2 class="section-title centered-title">Projects</h2>
+        <p class="projects-home-subtitle">A selection of data science and analytics projects spanning healthcare, clinical data, and machine learning.</p>
+
+        <!-- Filter Tabs -->
+        <div class="project-filter-tabs" id="projectFilterTabs">
+          <button class="project-filter-btn active" data-filter="all">All Projects</button>
+          <button class="project-filter-btn" data-filter="healthcare data engineer" >Healthcare  Data Engineering</button>
+          <button class="project-filter-btn" data-filter="ml">Machine Learning</button>
+          <button class="project-filter-btn" data-filter="analytics">Analytics &amp; BI</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-home-grid" id="projectsHomeGrid">
+
+        
+
+         <!-- =========================
+PROJECT 1 (TEMPORARILY HIDDEN)
+Drug Adverse Event Signal Detection
+=========================
+
+<div class="project-home-card" data-category="healthcare ml">
+
+    <div class="project-home-card-top">
+
+        <div class="project-home-meta">
+
+            <span class="project-home-category-tag">
+                Healthcare Data Engineering
+            </span>
+
+            <span class="project-home-status featured">
+                Featured
+            </span>
+
+        </div>
+
+        <h3 class="project-home-title">
+            Drug Adverse Event Signal Detection
+        </h3>
+
+        <p class="project-home-desc">
+
+            Mined the FDA FAERS database to identify disproportionality signals
+            for drug-adverse event pairs using Reporting Odds Ratio (ROR)
+            and Proportional Reporting Ratio (PRR). Built an interactive
+            Tableau dashboard to surface high-risk signals for
+            pharmacovigilance teams.
+
+        </p>
+
+        <div class="project-home-tags">
+
+            <span class="project-home-tag">Python</span>
+
+            <span class="project-home-tag">FAERS</span>
+
+            <span class="project-home-tag">Pharmacovigilance</span>
+
+            <span class="project-home-tag">Tableau</span>
+
+            <span class="project-home-tag">SQL</span>
+
+        </div>
+
+    </div>
+
+    <div class="project-home-card-footer">
+
+        <a href="https://github.com/marufasumi"
+           target="_blank"
+           class="project-home-link project-home-link--primary">
+
+           <i class="fab fa-github"></i>
+
+           View on GitHub
+
+        </a>
+
+
+        <a href="./project_dashboards/faers/project_details.html"
+           target="_blank"
+           class="project-home-link project-home-link--secondary">
+
+           View Details →
+
+        </a>
+
+    </div>
+
 </div>
 
+=========================
+END PROJECT 1
+========================= -->
+        
+<!-- Project 2 -->
+          <!-- Population Health & Healthcare Analytics Platform -->
+<div class="project-home-card" data-category="analytics">
+  <div class="project-home-card-top">
+    <div class="project-home-meta">
+      <span class="project-home-category-tag">Healthcare Analytics</span>
+      <span class="project-home-status featured">Featured</span>
+    </div>
+
+    <h3 class="project-home-title">Population Health & Healthcare Analytics Platform</h3>
+
+    <p class="project-home-desc">
+      Performed population health analytics using integrated Gold-layer patient datasets
+      from a Databricks Lakehouse platform. Analyzed patient demographics, risk
+      stratification, chronic disease burden, healthcare spending, utilization patterns,
+      claims cost, and high-cost populations using SQL.
+    </p>
+
+    <div class="project-home-tags">
+      <span class="project-home-tag">SQL</span>
+      <span class="project-home-tag">Databricks</span>
+      <span class="project-home-tag">Population Health</span>
+      <span class="project-home-tag">Healthcare Analytics</span>
+      <span class="project-home-tag">Risk Analytics</span>
+      <span class="project-home-tag">Claims Analytics</span>
+    </div>
+  </div>
+
+  <div class="project-home-card-footer">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="project-home-link project-home-link--primary">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+
+    <a href="./project_dashboards/healthcare_analytics/project_details.html"
+       target="_blank"
+       class="project-home-link project-home-link--secondary">
+      View Details →
+    </a>
+  </div>
+</div>
+
+         
+
+<!--Project 3 -->
+          <!-- Enterprise Healthcare Informatics AI Platform -->
+<div class="project-home-card" data-category="healthcare data engineer" >
+  <div class="project-home-card-top">
+    <div class="project-home-meta">
+      <span class="project-home-category-tag">Healthcare Data Engineering</span>
+      <span class="project-home-status featured">Featured</span>
+    </div>
+
+    <h3 class="project-home-title">Enterprise Healthcare Informatics AI Platform</h3>
+
+    <p class="project-home-desc">
+      Built an enterprise healthcare data engineering platform using Databricks Lakehouse Architecture.
+      Designed Bronze, Silver, and Gold pipelines for FHIR R4 data, population health analytics,
+      claims analytics, Power BI exports, and ML-ready feature engineering.
+    </p>
+
+    <div class="project-home-tags">
+      <span class="project-home-tag">Databricks</span>
+      <span class="project-home-tag">PySpark</span>
+      <span class="project-home-tag">FHIR R4</span>
+      <span class="project-home-tag">Delta Lake</span>
+      <span class="project-home-tag">SQL</span>
+      <span class="project-home-tag">Power BI</span>
+    </div>
+  </div>
 
 
-             
-    <script src="/script.js"></script>
+
+  <div class="project-home-card-footer">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform/tree/main/01_data_engineering"
+       target="_blank"
+       class="project-home-link project-home-link--primary">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+
+    <a href="./project_dashboards/healthcare_de/project_details.html"
+       target="_blank"
+       class="project-home-link project-home-link--secondary">
+      View Details →
+    </a>
+  </div>
+</div>
+
+<!-- Notebook 22 — Healthcare Operations Analytics -->
+<div class="project-home-card" data-category="healthcare analytics sql operations">
+
+  <div class="project-home-card-top">
+
+    <div class="project-home-meta">
+      <span class="project-home-category-tag">
+        Healthcare Operations Analytics
+      </span>
+
+      <span class="project-home-status featured">
+        Featured
+      </span>
+    </div>
+
+    <h3 class="project-home-title">
+      Healthcare Operations & Financial Analytics Platform
+    </h3>
+
+    <p class="project-home-desc">
+
+      Built an enterprise healthcare operations analytics platform using SQL and
+      Databricks Gold-layer healthcare datasets. Performed utilization analytics,
+      operational burden analysis, financial analytics, cost-driver modeling,
+      population ranking, and dashboard-ready KPI generation.
+
+    </p>
+
+    <div class="project-home-tags">
+
+      <span class="project-home-tag">SQL</span>
+
+      <span class="project-home-tag">Databricks</span>
+
+      <span class="project-home-tag">Healthcare Operations</span>
+
+      <span class="project-home-tag">Population Health</span>
+
+      <span class="project-home-tag">Claims Analytics</span>
+
+      <span class="project-home-tag">Power BI</span>
+
+      <span class="project-home-tag">Cost Drivers</span>
+
+      <span class="project-home-tag">Ranking Analytics</span>
+
+    </div>
+
+  </div>
+
+  <div class="project-home-card-footer">
+
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="project-home-link project-home-link--primary">
+
+      <i class="fab fa-github"></i>
+
+      View on GitHub
+
+    </a>
+
+
+    <a href="./project_dashboards/healthcare_operations/project_details.html"
+       target="_blank"
+       class="project-home-link project-home-link--secondary">
+
+      View Details →
+
+    </a>
+
+  </div>
+
+</div>
+        
+        </div><!-- end projects-home-grid -->
+
+        <div class="projects-home-cta">
+          <a href="https://github.com/marufasumi" target="_blank" class="projects-all-btn">
+            <i class="fab fa-github"></i> View All Projects on GitHub
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-block contact-section">
+      <div class="section-shell">
+        <h2 class="section-title centered-title">Contact</h2>
+        <div class="contact-card">
+          <p>Email: <a href="mailto:marufasumi081@gmail.com">marufasumi081@gmail.com</a></p>
+          <p>Phone: <a href="tel:+18599138419">+1 (859) 913-8419</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/marufasumi" target="_blank">linkedin.com/in/marufasumi</a></p>
+          <p>GitHub: <a href="https://github.com/marufasumi" target="_blank">github.com/marufasumi</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-bottom">
+    <p>&copy; 2026 Marufa Sultana Sumi. All Rights Reserved.</p>
+  </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
