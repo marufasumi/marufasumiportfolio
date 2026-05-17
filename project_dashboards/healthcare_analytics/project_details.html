@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Population Health Analytics Platform — Marufa Sultana Sumi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+ :root {
+  /* 🌿 NEW LIGHT MEDICAL THEME */
+
+  --navy: #f6f7fb;              /* main background */
+  --navy-mid: #ffffff;          /* cards */
+  --teal: #f28b74;              /* primary coral */
+  --teal-light: #ff9f8a;        /* soft coral */
+  --teal-dim: rgba(242,139,116,0.1);
+
+  --accent: #ff7a59;            /* highlight orange */
+  --warn: #f59e0b;
+
+  --slate: #6b7280;             /* text secondary */
+  --light: #374151;             /* text primary */
+  --white: #111827;             /* headings */
+
+  --mono: 'DM Mono', monospace;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'Outfit', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--slate);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+/* Soft UI upgrade */
+.pipeline-step,
+.profile-card,
+.cluster-card,
+.ror-formula,
+.criteria-list,
+.results-table-wrap,
+.tech-item,
+.panel {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* ── Grid bg ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(13,148,136,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,148,136,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 4rem;
+  background: white;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+
+}
+.nav-logo {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* FOR GITHUB AND DEMO */
+/* ===== NAV ACTIONS ===== */
+.nav-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+/* Base button */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+
+/* 🔥 Live Demo Button */
+.demo-btn {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  font-weight: 500;
+}
+
+.demo-btn:hover {
+  background: #ff6a45;
+  border-color: #ff6a45;
+}
+
+/* 🔴 Pulsing live dot */
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* 💻 GitHub Button */
+/* 💻 GitHub (Secondary) */
+.github-btn {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.github-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* GitHub icon */
+.github-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 4rem 4rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.hero-tag {
+  font-family: var(--mono);
+  color: var(--teal-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-tag::before {
+  content: '';
+  display: inline-block; width: 40px; height: 1px;
+  background: var(--teal-light);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--slate);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+.badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-stats {
+  display: flex; gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(204,214,246,0.08);
+}
+.stat-val {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--white);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* ── Sections ── */
+section {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 6rem 4rem;
+}
+.section-label {
+  font-family: var(--mono);
+  color: var(--teal-light);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--white);
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+.section-body {
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+/* ── Pipeline ── */
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: rgba(13,148,136,0.15);
+  border: 1px solid rgba(13,148,136,0.15);
+  margin-top: 2rem;
+}
+.pipeline-step {
+  background: var(--navy);
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: background 0.25s;
+}
+.pipeline-step:hover { background: var(--navy-mid); }
+.step-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.8rem;
+}
+.step-title {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--light);
+  margin-bottom: 0.5rem;
+}
+.step-desc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--slate);
+}
+.step-num-big {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-family: var(--serif);
+  font-size: 3rem;
+  color: rgba(13,148,136,0.07);
+  line-height: 1;
+}
+
+/* ── ROR explainer ── */
+.ror-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.ror-formula {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  border-left: 3px solid var(--teal);
+  padding: 2rem;
+  font-family: var(--mono);
+}
+.formula-title {
+  font-size: 0.72rem;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.formula-math {
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 2;
+}
+.formula-math span { color: var(--accent); }
+.criteria-list {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 2rem;
+}
+.criteria-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(204,214,246,0.06);
+}
+.criteria-item:last-child { border-bottom: none; }
+.criteria-icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--accent);
+}
+.criteria-text { font-size: 0.88rem; line-height: 1.5; }
+.criteria-text strong { color: var(--light); display: block; margin-bottom: 0.2rem; }
+
+/* ── Model results table ── */
+.results-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(13,148,136,0.2);
+  margin-top: 2.5rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+thead tr {
+  background: rgba(13,148,136,0.1);
+}
+th {
+  text-align: left;
+  padding: 1rem 1.2rem;
+  color: var(--teal-light);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(13,148,136,0.2);
+  font-weight: 500;
+}
+td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(204,214,246,0.05);
+  color: var(--slate);
+}
+tr.best td { background: rgba(13,148,136,0.06); }
+tr.best td:first-child { color: var(--white); font-weight: 500; }
+tr:last-child td { border-bottom: none; }
+.metric-bar-wrap {
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.metric-bar {
+  height: 4px;
+  background: var(--teal);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.metric-bar.dim { background: rgba(13,148,136,0.3); }
+.best-badge {
+  display: inline-block;
+  background: rgba(100,255,218,0.1);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  margin-left: 0.5rem;
+}
+
+/* ── Feature importance ── */
+.fi-list { margin-top: 2rem; }
+.fi-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 60px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(204,214,246,0.05);
+}
+.fi-name {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--light);
+}
+.fi-name.ror-feat { color: var(--accent); }
+.fi-bar-track {
+  background: rgba(204,214,246,0.05);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fi-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--teal);
+  transition: width 1s ease;
+}
+.fi-bar-fill.ror { background: var(--accent); }
+.fi-score {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--slate);
+  text-align: right;
+}
+
+/* ── Scoring framework ── */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.profile-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.profile-card:hover { border-color: var(--teal); }
+.profile-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.profile-card.renal::before { background: #3b82f6; }
+.profile-card.cardiac::before { background: #ef4444; }
+.profile-card.hepatic::before { background: var(--warn); }
+.profile-icon {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.profile-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+}
+.profile-desc {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--slate);
+  margin-bottom: 1.2rem;
+}
+.profile-weights { display: flex; flex-direction: column; gap: 0.4rem; }
+.weight-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 0.75rem;
+}
+.weight-cat { color: var(--slate); }
+.weight-val { color: var(--accent); }
+.weight-val.high { color: var(--warn); font-weight: 500; }
+
+/* ── Cluster ── */
+.cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.cluster-card {
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 2rem;
+  background: var(--navy-mid);
+  position: relative;
+}
+.cluster-id {
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--teal-light); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.cluster-rate {
+  font-family: var(--serif); font-size: 2.8rem;
+  line-height: 1; margin-bottom: 0.5rem;
+}
+.cluster-rate.low { color: #22c55e; }
+.cluster-rate.mid { color: var(--warn); }
+.cluster-rate.high { color: #ef4444; }
+.cluster-size {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--slate); margin-bottom: 1rem;
+}
+.cluster-desc { font-size: 0.85rem; line-height: 1.6; }
+
+/* ── Tech stack ── */
+.tech-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  margin-top: 2rem;
+}
+.tech-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 0.7rem 1.1rem;
+  font-family: var(--mono); font-size: 0.8rem;
+  color: var(--light);
+  border-radius: 2px;
+}
+.tech-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  border-top: 1px solid rgba(13,148,136,0.15);
+  padding: 6rem 4rem;
+}
+.cta-section .section-title { margin: 0 auto 1rem; }
+.cta-buttons {
+  display: flex; gap: 1rem; justify-content: center;
+  margin-top: 2.5rem; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--mono); font-size: 0.82rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.btn-primary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+.btn-primary:hover { background: rgba(100,255,218,0.1); }
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(204,214,246,0.2);
+  color: var(--light);
+}
+.btn-secondary:hover { border-color: var(--light); }
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid rgba(13,148,136,0.1);
+  padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--slate);
+  position: relative; z-index: 1;
+}
+
+/* ── Fade-in animation ── */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .ror-grid, .profiles-grid, .cluster-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-logo">// mss.healthcare-analytics</div>
+
+  <ul class="nav-links">
+    <li><a href="#population">Population</a></li>
+    <li><a href="#risk">Risk</a></li>
+    <li><a href="#financial">Financial</a></li>
+    <li><a href="#utilization">Utilization</a></li>
+    <li><a href="#sql">SQL Analytics</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="nav-btn github-btn">
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag">Population Health Analytics · SQL · Databricks</div>
+
+    <h1>Population Health Analytics,<br><em>Built for Healthcare Insights</em></h1>
+
+    <p class="hero-sub">
+      A healthcare analytics module built on Databricks Gold-layer patient datasets.
+      The project analyzes population health, chronic disease burden, risk stratification,
+      claims cost, utilization patterns, and high-cost patient populations using SQL.
+    </p>
+
+    <div class="hero-badges">
+      <span class="badge">SQL</span>
+      <span class="badge">Databricks</span>
+      <span class="badge">Population Health</span>
+      <span class="badge">Risk Analytics</span>
+      <span class="badge">Claims Analytics</span>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">555</div>
+        <div class="stat-label">Patients</div>
+      </div>
+      <div>
+        <div class="stat-val">165</div>
+        <div class="stat-label">Diabetic Patients</div>
+      </div>
+      <div>
+        <div class="stat-val">77</div>
+        <div class="stat-label">High Risk Patients</div>
+      </div>
+      <div>
+        <div class="stat-val">46.19</div>
+        <div class="stat-label">Average Age</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="population">
+  <div class="section-label fade-up">01 — Population Health Analytics</div>
+  <h2 class="section-title fade-up">Understanding the Patient Population</h2>
+
+  <p class="section-body fade-up">
+    This module analyzes patient demographics, age distribution, disease burden,
+    and population-level healthcare characteristics using integrated Gold-layer
+    healthcare analytics tables.
+  </p>
+
+  <div class="cluster-grid fade-up">
+    <div class="cluster-card">
+      <div class="cluster-id">Total Population</div>
+      <div class="cluster-rate low">555</div>
+      <div class="cluster-size">Patients</div>
+      <div class="cluster-desc">
+        Patient-level analytics table created from integrated healthcare Gold-layer data.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Average Age</div>
+      <div class="cluster-rate mid">46.19</div>
+      <div class="cluster-size">Years</div>
+      <div class="cluster-desc">
+        Average age calculated across the full population health dataset.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Age Range</div>
+      <div class="cluster-rate high">4–114</div>
+      <div class="cluster-size">Years</div>
+      <div class="cluster-desc">
+        Patient population includes pediatric, adult, and senior groups.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="risk">
+  <div class="section-label fade-up">02 — Risk Stratification Analytics</div>
+  <h2 class="section-title fade-up">Low, Medium, and High Risk Populations</h2>
+
+  <p class="section-body fade-up">
+    Risk stratification was performed to understand population risk burden and
+    identify patients requiring greater care management focus.
+  </p>
+
+  <div class="results-table-wrap fade-up">
+    <table>
+      <thead>
+        <tr>
+          <th>Risk Category</th>
+          <th>Patient Count</th>
+          <th>Business Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Low Risk</td>
+          <td>247</td>
+          <td>Lower disease, utilization, and cost burden</td>
+        </tr>
+        <tr>
+          <td>Medium Risk</td>
+          <td>231</td>
+          <td>Moderate healthcare complexity and cost exposure</td>
+        </tr>
+        <tr class="best">
+          <td>High Risk</td>
+          <td>77</td>
+          <td>Population requiring targeted intervention and monitoring</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="financial">
+  <div class="section-label fade-up">03 — Healthcare Financial Analytics</div>
+  <h2 class="section-title fade-up">Claims Cost and High-Cost Patient Analysis</h2>
+
+  <p class="section-body fade-up">
+    Claims cost analytics were used to identify expensive patients, cost categories,
+    and financial concentration across patient groups.
+  </p>
+
+  <div class="cluster-grid fade-up">
+    <div class="cluster-card">
+      <div class="cluster-id">Average Claim Cost</div>
+      <div class="cluster-rate mid">$240K</div>
+      <div class="cluster-size">Average total claim cost</div>
+      <div class="cluster-desc">
+        Average healthcare spending calculated at patient level.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">High-Cost Group</div>
+      <div class="cluster-rate high">$111M</div>
+      <div class="cluster-size">Total spending</div>
+      <div class="cluster-desc">
+        High-cost patients contribute disproportionately to total healthcare spending.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Cost Concentration</div>
+      <div class="cluster-rate low">Top</div>
+      <div class="cluster-size">Spending drivers</div>
+      <div class="cluster-desc">
+        SQL ranking identified patients with the highest healthcare spending.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="utilization">
+  <div class="section-label fade-up">04 — Utilization Analytics</div>
+  <h2 class="section-title fade-up">Encounter Burden and Healthcare Usage</h2>
+
+  <p class="section-body fade-up">
+    Utilization analytics were introduced to examine healthcare usage patterns,
+    including total encounters and high-utilization populations.
+  </p>
+
+  <div class="profiles-grid fade-up">
+    <div class="profile-card renal">
+      <div class="profile-icon">50.11</div>
+      <div class="profile-name">Average Encounters</div>
+      <div class="profile-desc">
+        Average number of healthcare encounters across the patient population.
+      </div>
+    </div>
+
+    <div class="profile-card cardiac">
+      <div class="profile-icon">ER</div>
+      <div class="profile-name">Emergency Utilization</div>
+      <div class="profile-desc">
+        Emergency encounter metrics support high-utilizer identification.
+      </div>
+    </div>
+
+    <div class="profile-card hepatic">
+      <div class="profile-icon">IP</div>
+      <div class="profile-name">Inpatient Utilization</div>
+      <div class="profile-desc">
+        Inpatient encounter metrics help evaluate hospital utilization burden.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sql">
+  <div class="section-label fade-up">05 — SQL Analytics Layer</div>
+  <h2 class="section-title fade-up">Reusable Healthcare Analytics Queries</h2>
+
+  <p class="section-body fade-up">
+    SQL was used to create population health KPIs, grouped analytics,
+    joins, subqueries, CTEs, views, and patient ranking logic for healthcare analytics.
+  </p>
+
+  <div class="tech-grid fade-up">
+    <div class="tech-item"><div class="tech-dot"></div>SELECT / WHERE</div>
+    <div class="tech-item"><div class="tech-dot"></div>GROUP BY / HAVING</div>
+    <div class="tech-item"><div class="tech-dot"></div>CASE WHEN</div>
+    <div class="tech-item"><div class="tech-dot"></div>INNER JOIN</div>
+    <div class="tech-item"><div class="tech-dot"></div>LEFT JOIN</div>
+    <div class="tech-item"><div class="tech-dot"></div>Subqueries</div>
+    <div class="tech-item"><div class="tech-dot"></div>CTEs</div>
+    <div class="tech-item"><div class="tech-dot"></div>Views</div>
+    <div class="tech-item"><div class="tech-dot"></div>Window Functions</div>
+    <div class="tech-item"><div class="tech-dot"></div>ROW_NUMBER</div>
+    <div class="tech-item"><div class="tech-dot"></div>RANK</div>
+    <div class="tech-item"><div class="tech-dot"></div>PARTITION BY</div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="section-label" style="text-align:center;margin-bottom:0.8rem">
+    Open Source
+  </div>
+
+  <h2 class="section-title" style="text-align:center">
+    Population Health Analytics Portfolio Module
+  </h2>
+
+  <p style="max-width:540px;margin:0 auto;color:var(--slate);line-height:1.8;">
+    The GitHub repository includes SQL notebooks, healthcare analytics documentation,
+    business questions, data dictionary, sample data, visual outputs, and project summaries.
+  </p>
+
+  <div class="cta-buttons">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="btn btn-primary">
+      View on GitHub →
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>Marufa Sultana Sumi · Healthcare Analytics · Population Health</span>
+  <span style="font-family:var(--mono);color:var(--teal)">
+    SQL · Databricks · Risk Analytics
+  </span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
