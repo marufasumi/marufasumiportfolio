@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Operations Analytics Platform — Marufa Sultana Sumi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+ :root {
+  --navy: #f6f7fb;
+  --navy-mid: #ffffff;
+  --teal: #f28b74;
+  --teal-light: #ff9f8a;
+  --teal-dim: rgba(242,139,116,0.1);
+  --accent: #ff7a59;
+  --warn: #f59e0b;
+  --slate: #6b7280;
+  --light: #374151;
+  --white: #111827;
+  --mono: 'DM Mono', monospace;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'Outfit', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--slate);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.pipeline-step,
+.profile-card,
+.cluster-card,
+.results-table-wrap,
+.tech-item {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(13,148,136,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,148,136,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; z-index: 0;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 4rem;
+  background: white;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+.nav-links a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+
+.github-btn {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.github-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 4rem 4rem;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  color: var(--teal-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+
+.hero-tag::before {
+  content: '';
+  display: inline-block; width: 40px; height: 1px;
+  background: var(--teal-light);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--slate);
+  max-width: 650px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+
+.badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-stats {
+  display: flex; gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(204,214,246,0.08);
+  flex-wrap: wrap;
+}
+
+.stat-val {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+section {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 6rem 4rem;
+}
+
+.section-label {
+  font-family: var(--mono);
+  color: var(--teal-light);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--white);
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+
+.section-body {
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 760px;
+  margin-bottom: 3rem;
+}
+
+.cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.cluster-card {
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 2rem;
+  background: var(--navy-mid);
+  position: relative;
+}
+
+.cluster-id {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.cluster-rate {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.cluster-rate.low { color: #22c55e; }
+.cluster-rate.mid { color: var(--warn); }
+.cluster-rate.high { color: #ef4444; }
+
+.cluster-size {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--slate);
+  margin-bottom: 1rem;
+}
+
+.cluster-desc { font-size: 0.85rem; line-height: 1.6; }
+
+.results-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(13,148,136,0.2);
+  margin-top: 2.5rem;
+  background: var(--navy-mid);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+thead tr { background: rgba(13,148,136,0.1); }
+
+th {
+  text-align: left;
+  padding: 1rem 1.2rem;
+  color: var(--teal-light);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(13,148,136,0.2);
+  font-weight: 500;
+}
+
+td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(204,214,246,0.05);
+  color: var(--slate);
+}
+
+tr.best td { background: rgba(13,148,136,0.06); }
+tr.best td:first-child { color: var(--white); font-weight: 500; }
+tr:last-child td { border-bottom: none; }
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.profile-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+
+.profile-card:hover { border-color: var(--teal); }
+
+.profile-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+
+.profile-card.renal::before { background: #3b82f6; }
+.profile-card.cardiac::before { background: #ef4444; }
+.profile-card.hepatic::before { background: var(--warn); }
+
+.profile-icon {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.profile-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+}
+
+.profile-desc {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--slate);
+  margin-bottom: 1.2rem;
+}
+
+.tech-grid {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.tech-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: var(--navy-mid);
+  border: 1px solid rgba(13,148,136,0.2);
+  padding: 0.7rem 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--light);
+  border-radius: 2px;
+}
+
+.tech-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+.cta-section {
+  text-align: center;
+  border-top: 1px solid rgba(13,148,136,0.15);
+  padding: 6rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-buttons {
+  display: flex; gap: 1rem; justify-content: center;
+  margin-top: 2.5rem; flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-primary:hover { background: rgba(100,255,218,0.1); }
+
+footer {
+  border-top: 1px solid rgba(13,148,136,0.1);
+  padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--slate);
+  position: relative; z-index: 1;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-stats { gap: 1.5rem; }
+  .profiles-grid, .cluster-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-logo">// mss.healthcare-operations</div>
+
+  <ul class="nav-links">
+    <li><a href="#utilization">Utilization</a></li>
+    <li><a href="#operations">Operations</a></li>
+    <li><a href="#financial">Financial</a></li>
+    <li><a href="#drivers">Cost Drivers</a></li>
+    <li><a href="#ranking">Ranking</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="nav-btn github-btn">
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag">Healthcare Operations · SQL · Databricks</div>
+
+    <h1>Healthcare Operations Analytics,<br><em>Built for Cost & Utilization Insights</em></h1>
+
+    <p class="hero-sub">
+      A healthcare operations analytics module built on Databricks Gold-layer patient data.
+      The project analyzes resource utilization, emergency burden, inpatient workload,
+      claims cost, cost drivers, and population ranking using SQL.
+    </p>
+
+    <div class="hero-badges">
+      <span class="badge">SQL</span>
+      <span class="badge">Databricks</span>
+      <span class="badge">Healthcare Operations</span>
+      <span class="badge">Cost Drivers</span>
+      <span class="badge">Power BI Ready</span>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">555</div>
+        <div class="stat-label">Patients</div>
+      </div>
+      <div>
+        <div class="stat-val">77</div>
+        <div class="stat-label">High Risk</div>
+      </div>
+      <div>
+        <div class="stat-val">$240K</div>
+        <div class="stat-label">Avg Claim Cost</div>
+      </div>
+      <div>
+        <div class="stat-val">50.11</div>
+        <div class="stat-label">Avg Encounters</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="utilization">
+  <div class="section-label fade-up">01 — Resource Utilization Analytics</div>
+  <h2 class="section-title fade-up">Identifying High-Utilization Populations</h2>
+
+  <p class="section-body fade-up">
+    Resource utilization analytics identified which patient groups consume the greatest
+    healthcare resources. The analysis compared utilization by risk category, age group,
+    chronic disease burden, and patient-level encounter volume.
+  </p>
+
+  <div class="cluster-grid fade-up">
+    <div class="cluster-card">
+      <div class="cluster-id">High Risk Avg Encounters</div>
+      <div class="cluster-rate high">122</div>
+      <div class="cluster-size">Average encounters</div>
+      <div class="cluster-desc">
+        High-risk patients consumed roughly five times more encounters than low-risk patients.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Senior Avg Encounters</div>
+      <div class="cluster-rate mid">88.84</div>
+      <div class="cluster-size">Average encounters</div>
+      <div class="cluster-desc">
+        Senior populations showed substantially higher healthcare usage than adults and pediatric groups.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Top Utilizer</div>
+      <div class="cluster-rate high">1,563</div>
+      <div class="cluster-size">Total encounters</div>
+      <div class="cluster-desc">
+        SQL ranking identified extreme utilization concentrated among high-risk multimorbidity patients.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="operations">
+  <div class="section-label fade-up">02 — Healthcare Operations Analytics</div>
+  <h2 class="section-title fade-up">Emergency Burden and Inpatient Workload</h2>
+
+  <p class="section-body fade-up">
+    Operations analytics evaluated emergency utilization, inpatient burden, admission pressure,
+    and encounter duration to identify populations creating hospital workload.
+  </p>
+
+  <div class="results-table-wrap fade-up">
+    <table>
+      <thead>
+        <tr>
+          <th>Risk Category</th>
+          <th>Avg Emergency</th>
+          <th>Avg Inpatient</th>
+          <th>Operational Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Low Risk</td>
+          <td>0.73</td>
+          <td>0.05</td>
+          <td>Low operational burden</td>
+        </tr>
+        <tr>
+          <td>Medium Risk</td>
+          <td>1.70</td>
+          <td>0.84</td>
+          <td>Moderate operational demand</td>
+        </tr>
+        <tr class="best">
+          <td>High Risk</td>
+          <td>5.86</td>
+          <td>6.38</td>
+          <td>Highest emergency and admission burden</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="financial">
+  <div class="section-label fade-up">03 — Financial Analytics</div>
+  <h2 class="section-title fade-up">Healthcare Spending and Cost Concentration</h2>
+
+  <p class="section-body fade-up">
+    Financial analytics measured claim cost burden by risk category, age group,
+    chronic disease burden, and top-cost patients.
+  </p>
+
+  <div class="cluster-grid fade-up">
+    <div class="cluster-card">
+      <div class="cluster-id">High Risk Avg Cost</div>
+      <div class="cluster-rate high">$748K</div>
+      <div class="cluster-size">Average claim cost</div>
+      <div class="cluster-desc">
+        High-risk patients generated the highest average healthcare spending.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Medium Risk Total Cost</div>
+      <div class="cluster-rate mid">$62.5M</div>
+      <div class="cluster-size">Aggregate spending</div>
+      <div class="cluster-desc">
+        Medium-risk patients generated the highest total spending because of larger population size.
+      </div>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-id">Top Patient Cost</div>
+      <div class="cluster-rate high">$13.5M</div>
+      <div class="cluster-size">Highest claim cost</div>
+      <div class="cluster-desc">
+        Cost concentration analysis identified extreme spending among a small subset of patients.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="drivers">
+  <div class="section-label fade-up">04 — Cost Driver Analytics</div>
+  <h2 class="section-title fade-up">Understanding Why Patients Cost More</h2>
+
+  <p class="section-body fade-up">
+    Cost driver analytics evaluated whether utilization, admissions, chronic disease burden,
+    and medication burden were associated with higher healthcare spending.
+  </p>
+
+  <div class="profiles-grid fade-up">
+    <div class="profile-card renal">
+      <div class="profile-icon">Utilization</div>
+      <div class="profile-name">$4.0M Avg Cost</div>
+      <div class="profile-desc">
+        Extreme utilization was the strongest observed cost driver in the analysis.
+      </div>
+    </div>
+
+    <div class="profile-card cardiac">
+      <div class="profile-icon">Disease Burden</div>
+      <div class="profile-name">$1.44M Avg Cost</div>
+      <div class="profile-desc">
+        High chronic disease burden showed strong cost escalation and care complexity.
+      </div>
+    </div>
+
+    <div class="profile-card hepatic">
+      <div class="profile-icon">Polypharmacy</div>
+      <div class="profile-name">$390K Avg Cost</div>
+      <div class="profile-desc">
+        Medication burden was associated with increased cost and clinical complexity.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ranking">
+  <div class="section-label fade-up">05 — Comparative & Ranking Analytics</div>
+  <h2 class="section-title fade-up">Ranking High-Impact Patient Populations</h2>
+
+  <p class="section-body fade-up">
+    SQL window functions were used to rank patients by cost and utilization.
+    The analysis compared cost rank against utilization rank to determine whether high utilizers
+    were also high spenders.
+  </p>
+
+  <div class="results-table-wrap fade-up">
+    <table>
+      <thead>
+        <tr>
+          <th>Analysis</th>
+          <th>Top Finding</th>
+          <th>Business Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Spending Rank by Risk</td>
+          <td>Medium Risk ranked #1 total spend</td>
+          <td>Large moderate-risk populations create aggregate cost burden</td>
+        </tr>
+        <tr>
+          <td>Top Cost Patients</td>
+          <td>High-risk patients dominated</td>
+          <td>Targeted care management opportunity</td>
+        </tr>
+        <tr class="best">
+          <td>Cost vs Utilization Rank</td>
+          <td>Utilization explains cost partially</td>
+          <td>Cost is multifactorial and includes clinical complexity</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sql">
+  <div class="section-label fade-up">06 — SQL Analytics Skills Demonstrated</div>
+  <h2 class="section-title fade-up">Reusable SQL for Healthcare Analytics</h2>
+
+  <p class="section-body fade-up">
+    The notebook used SQL to produce healthcare operations KPIs, grouped analytics,
+    cost-driver analysis, and ranking outputs suitable for Power BI dashboards.
+  </p>
+
+  <div class="tech-grid fade-up">
+    <div class="tech-item"><div class="tech-dot"></div>SELECT / WHERE</div>
+    <div class="tech-item"><div class="tech-dot"></div>GROUP BY</div>
+    <div class="tech-item"><div class="tech-dot"></div>CASE WHEN</div>
+    <div class="tech-item"><div class="tech-dot"></div>AVG / SUM / MAX</div>
+    <div class="tech-item"><div class="tech-dot"></div>ORDER BY</div>
+    <div class="tech-item"><div class="tech-dot"></div>LIMIT</div>
+    <div class="tech-item"><div class="tech-dot"></div>CTEs</div>
+    <div class="tech-item"><div class="tech-dot"></div>Window Functions</div>
+    <div class="tech-item"><div class="tech-dot"></div>RANK()</div>
+    <div class="tech-item"><div class="tech-dot"></div>Power BI Exports</div>
+    <div class="tech-item"><div class="tech-dot"></div>Dashboard KPIs</div>
+    <div class="tech-item"><div class="tech-dot"></div>Gold Layer Analytics</div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="section-label" style="text-align:center;margin-bottom:0.8rem">
+    Portfolio Module
+  </div>
+
+  <h2 class="section-title" style="text-align:center">
+    Healthcare Operations & Financial Analytics Platform
+  </h2>
+
+  <p style="max-width:640px;margin:0 auto;color:var(--slate);line-height:1.8;">
+    The GitHub repository includes SQL notebooks, healthcare operations documentation,
+    cost-driver analysis, sample dashboard exports, README files, visual outputs,
+    and interview-ready analytics summaries.
+  </p>
+
+  <div class="cta-buttons">
+    <a href="https://github.com/marufasumi/enterprise-healthcare-informatics-ai-platform"
+       target="_blank"
+       class="btn btn-primary">
+      View on GitHub →
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>Marufa Sultana Sumi · Healthcare Operations Analytics</span>
+  <span style="font-family:var(--mono);color:var(--teal)">
+    SQL · Databricks · Cost Drivers · Power BI
+  </span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
